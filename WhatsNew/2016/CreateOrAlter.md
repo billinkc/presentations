@@ -1,9 +1,26 @@
 # Create or Alter
 
+Seen this curious nugget inside sp_whoisactive?
+
+```
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME = 'sp_WhoIsActive')
+EXEC ('CREATE PROC dbo.sp_WhoIsActive AS SELECT ''stub version, to be replaced''')
+GO
+ALTER PROC dbo.sp_WhoIsActive --...
+```
+
+No more! We can now use the Create or Alter syntax to simplify object interactions.
+
+
+
+Valid for 
+
 - STORED PROCEDURES
 - FUNCTIONS
 - TRIGGERS
 - VIEWS
+
+
 
 Preserves permissions compared to [DIE](./DropIfExists.md)
 
