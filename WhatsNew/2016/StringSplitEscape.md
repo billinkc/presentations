@@ -9,7 +9,7 @@ SELECT * FROM STRING_SPLIT('1,2,3,4,5', ',') AS Demo;
 ```
 
 
-String escaping will replace invalid characters with their entity values. Applicable to [JSON](./JSON.md)
+String escaping will replace invalid characters with their entity values. Applicable to [JSON](./Json.md)
 
 ```
 SELECT STRING_ESCAPE('Hello tab' + CHAR(9)+'world', 'json');
