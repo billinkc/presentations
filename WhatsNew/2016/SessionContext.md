@@ -2,15 +2,10 @@
 
 Like CONTEXT_INFO, but better. Key-value pairs of text instead of a single bitmasked values
 
-
-
 Session_context offers a more secure, key-value pairs alternative to context_info for storing session variables.
 
-
-
-SESSION_CONTEXT permits
-you define key value pairs for a total of 256 KB of data, and a key
-can be marked as read_only. This is a great replacement to context_info.
+> SESSION_CONTEXT permits
+> you define key value pairs for a total of 256 KB of data, and a key can be marked as read_only. This is a great replacement to context_info.
 
 
 
