@@ -1,16 +1,16 @@
-USE WideWorldImporters
+USE DemoDb
 
 IF NOT EXISTS(
 SELECT * FROM sys.filegroups AS F WHERE F.name = 'FGSelectInto'
 )
 BEGIN
-    ALTER DATABASE WideWorldImporters
+    ALTER DATABASE DemoDb
     ADD FILEGROUP FGSelectInto;
 
     DECLARE
-        @mdfPath varchar(250) = (SELECT REPLACE(DF.physical_name, 'WideWorldImporters.mdf', '') FROM sys.database_files AS DF WHERE DF.type = 0 AND DF.file_id = 1);
+        @mdfPath varchar(250) = (SELECT REPLACE(DF.physical_name, 'DemoDb.mdf', '') FROM sys.database_files AS DF WHERE DF.type = 0 AND DF.file_id = 1);
     DECLARE
-        @cheapHack nvarchar(max) = N'ALTER DATABASE WideWorldImporters ADD FILE (NAME=''FGSelectInto_Data'',FILENAME='''
+        @cheapHack nvarchar(max) = N'ALTER DATABASE DemoDb ADD FILE (NAME=''FGSelectInto_Data'',FILENAME='''
     + @mdfPath + 'SelectIntDemo.ndf'' ) TO FILEGROUP FGSelectInto;'
 
     EXECUTE sys.sp_executesql @cheapHack, N'';
@@ -54,6 +54,6 @@ WHERE
     AND T.name IN
     (
         'SelectIntoOnFileGroup'
-    ,   'DefaultFileGroup'
+    ,   'PRIMARY'
     );
 

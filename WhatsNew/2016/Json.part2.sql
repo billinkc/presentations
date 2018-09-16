@@ -149,4 +149,4 @@ value of the Type column	JSON data type
 SELECT 
 *
 FROM
-    OPENJSON(@jsonPath) AS OJ
+    OPENJSON(@jsonPath) AS OJ;

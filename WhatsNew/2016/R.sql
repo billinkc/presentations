@@ -1,14 +1,17 @@
 EXECUTE sys.sp_execute_external_script
     @language = N'R'
-,   @script = N'iris_data <- iris;'
-,   @output_data_1_name = N'iris_data'
+,   @script = N'anscombe_data <- anscombe;'
+,   @output_data_1_name = N'anscombe_data'
 WITH RESULT SETS
 (
     (
-        "Sepal.Length" float NOT NULL
-    ,   "Sepal.Width" float NOT NULL
-    ,   "Petal.Length" float NOT NULL
-    ,   "Petal.Width" float NOT NULL
-    ,   "Species" varchar(100)
+        "x1" int NOT NULL
+    ,   "x2" int NOT NULL
+    ,   "x3" int NOT NULL
+    ,   "x4" int NOT NULL
+    ,   "y1" float NOT NULL
+    ,   "y2" float NOT NULL
+    ,   "y3" float NOT NULL
+    ,   "y4" float NOT NULL
     )
 );

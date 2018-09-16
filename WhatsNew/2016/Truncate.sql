@@ -70,16 +70,16 @@ FROM
         CROSS APPLY
         (
             SELECT
-                REPLICATE(CHAR(65 +PK.PartitionKey), 50)
+                REPLICATE(CHAR(65 + PK.PartitionKey), 50)
         ) V(Col1)
     )D(PartitionKey, Col1)
 WHERE
     NOT EXISTS
     (
         SELECT * FROM dbo.PartitionDemo AS PD WHERE PD.PartitionKey = D.PartitionKey
-    )
+    );
 
-SELECT * FROM dbo.PartitionDemo;
+SELECT 'Original data' AS [Status], * FROM dbo.PartitionDemo;
 
 TRUNCATE TABLE dbo.PartitionDemo WITH (PARTITIONS (2,4, 6 TO 8)); 
-SELECT * FROM dbo.PartitionDemo;
+SELECT 'Truncated data' AS [Status], * FROM dbo.PartitionDemo;
