@@ -54,4 +54,3 @@ FROM
 
 
 
-SELECT STRING_ESCAPE('Hello tab' + CHAR(9)+'world', 'json');

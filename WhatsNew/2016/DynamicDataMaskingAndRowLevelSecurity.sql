@@ -1,4 +1,4 @@
-USE tempdb
+USE DemoDb
 REVERT;
 SET NOCOUNT ON;
 -- Clean up our mess before begining
@@ -133,3 +133,4 @@ FROM
     dbo.CUSTOMER AS C;
 
 REVERT;
+PRINT 'Bill just ran the whole script. Taunt him for his foolishness';
