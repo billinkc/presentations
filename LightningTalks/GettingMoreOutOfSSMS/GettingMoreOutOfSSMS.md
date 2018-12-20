@@ -8,13 +8,13 @@ Modify your shortcut to include the `/nosplash` parameter
 
 1. Find the shortcut file
 
-![Start_OpenFileLocation_00](.\Start_OpenFileLocation_00.png)
+![Start_OpenFileLocation_00](.\images\Start_OpenFileLocation_00.png)
 
 
 
 2. Right click and select `Properties`
 
-   ![Start_Properties](.\images\Start_Properties.png)
+   ![Start_Properties](.\Start_Properties.png)
 
 3. Append ` /nosplash` to the end of the Target (there is a space after Ssms.exe" and the /nosplash parameter)
 
