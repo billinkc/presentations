@@ -8,7 +8,7 @@ Modify your shortcut to include the `/nosplash` parameter
 
 1. Find the shortcut file
 
-![Start_OpenFileLocation_00](images/Start_OpenFileLocation_00.png)
+![Start_OpenFileLocation_00](./images/Start_OpenFileLocation_00.png)
 
 
 2. Right click and select `Properties`
@@ -23,7 +23,7 @@ Target: `"C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementS
 
 Registered servers is a user defined lists and groups of servers.
 
-![RegisteredServers_00](.\images\RegisteredServers_00.png)
+![RegisteredServers_00](./images/RegisteredServers_00.png)
 
 Quick, answer these questions (must show your work for credit) for all of your servers 
 
@@ -35,13 +35,13 @@ Categorize servers into meaningful groups and color code connections.
 
 
 
-![RegisteredServers_10](.\images\RegisteredServers_10.png)
+![RegisteredServers_10](./images/RegisteredServers_10.png)
 
 ## Exporting registered servers
 
 Get the new person up to speed in a flash 
 
-![TasksExportRegisteredServers_00](.\images\TasksExportRegisteredServers_00.png)
+![TasksExportRegisteredServers_00](./images/TasksExportRegisteredServers_00.png)
 
 
 
