@@ -10,7 +10,7 @@ Lightning talks!
 
 
 
-SSMS templates are over in the [SSMS Repository](/SSMSTemplates)
+SSMS templates are over in the [SSMS Repository](https://github.com/billinkc/SSMSTemplates)
 
 
 
