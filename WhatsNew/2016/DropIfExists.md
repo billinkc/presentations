@@ -31,5 +31,7 @@ The Drop If Exists, DIE, syntax is available for most objects.
 
 Standard rules apply where statements must be the first statement in a query batch (VIEW, SCHEMA)
 
+Using a DIE statement against the wrong object raises severity 16 error.
+
 # Documentation
 https://blogs.msdn.microsoft.com/sqlserverstorageengine/2015/11/03/drop-if-exists-new-thing-in-sql-server-2016/
