@@ -37,6 +37,9 @@ WHERE
 
 
 -- See data.
+-- Select table in object explorer
+-- Encrypt Columns...
+--  Skip, Random, Deterministic, Random, Skip
 -- Run encryption.
 -- See data again
 SELECT * FROM dbo.Patient AS P;

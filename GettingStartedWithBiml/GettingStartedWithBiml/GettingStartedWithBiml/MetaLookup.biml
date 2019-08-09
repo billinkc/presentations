@@ -1,0 +1,99 @@
+<#@ template language="C#" tier="2" #>
+<#@ property name="ds" type="System.Data.DataSet" #>
+
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.Sql" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Text" #>
+		<Package Name="LookupDemo" ConstraintMode="Linear">
+			<Tasks>
+				<Dataflow Name="DFT Sample">
+					<Annotations>
+						<Annotation AnnotationType="Description">We need to get info about the currency and the shipping method to calculate billing</Annotation>
+                    </Annotations>
+					<Transformations>
+						<OleDbSource Name="OLE_SRC" ConnectionName="CM_SRC" >
+							<DirectInput>SELECT * FROM (VALUES (N'TRL', 'Turkish Lira'), ('LEI', 'Romania'))D(Code, CurrencyName) cross apply
+								(VALUES (N'XRQ - TRUCK GROUND'),('ZY - EXPRESS')) D1(ShipMethod);</DirectInput>
+                        </OleDbSource>
+						
+						<#= MetaLookup.MetaBuildLookups(ds) #>
+                    <DerivedColumns Name="DER Placeholder for data viewer" />						
+</Transformations>
+</Dataflow>
+</Tasks>
+</Package>
+<#+
+
+public class MetaLookup
+{
+	
+	public static string MetaBuildLookups(DataSet ds)
+	{
+            StringBuilder lookupText = new StringBuilder();
+          
+            // I never know the best way to deal with XML building
+            XElement lookup = new XElement("Lookup");
+            DataTable source = ds.Tables["Source"];
+            DataTable input = ds.Tables["Input"];
+            DataTable output = ds.Tables["Output"];
+
+            int sourceNameOrdinal = source.Columns["LookupName"].Ordinal;
+            int sourceNoMatchBehaviorOrdinal = source.Columns["NoMatchBehavior"].Ordinal;
+            int sourceOleDbConnectionNameOrdinal = source.Columns["OleDbConnectionName"].Ordinal;
+            int sourceQueryOrdinal = source.Columns["SourceQuery"].Ordinal;
+            int inputNameOrdinal = input.Columns["LookupName"].Ordinal;
+            int inputSourceColumnOrdinal = input.Columns["SourceColumn"].Ordinal;
+            int inputTargetColumnOrdinal = input.Columns["TargetColumn"].Ordinal;
+            int outputNameOrdinal = output.Columns["LookupName"].Ordinal;
+            int outputSourceColumnOrdinal = output.Columns["SourceColumn"].Ordinal;
+            int outputTargetColumnOrdinal = output.Columns["TargetColumn"].Ordinal;
+
+            XElement inputXE = new XElement("Input");
+            XElement outputXE = new XElement("Output");
+
+            foreach (System.Data.DataRow dr in source.Rows)
+            {
+                lookup = new XElement("Lookup");
+                inputXE = new XElement("Inputs");
+                outputXE = new XElement("Outputs");
+
+                lookup.Add(new XAttribute("Name", dr[sourceNameOrdinal]));
+                lookup.Add(new XAttribute("NoMatchBehavior", dr[sourceNoMatchBehaviorOrdinal]));
+                lookup.Add(new XAttribute("OleDbConnectionName", dr[sourceOleDbConnectionNameOrdinal]));
+                lookup.Add(new XElement("DirectInput", dr[sourceQueryOrdinal]));
+
+                foreach (System.Data.DataRow cols in input.Rows)
+                {
+                    // lazy filtering
+                    if (cols[inputNameOrdinal].ToString() == dr[sourceNameOrdinal].ToString())
+                    {
+                        inputXE.Add(new XElement("Column",
+                            new XAttribute("SourceColumn", cols[inputSourceColumnOrdinal]),
+                            new XAttribute("TargetColumn", cols[inputTargetColumnOrdinal])));
+                        
+                    }
+                }
+
+                foreach (System.Data.DataRow cols in output.Rows)
+                {
+                    if (cols[outputNameOrdinal].ToString() == dr[sourceNameOrdinal].ToString())
+                    {
+                        outputXE.Add(new XElement("Column",
+                            new XAttribute("SourceColumn", cols[inputSourceColumnOrdinal]),
+                            new XAttribute("TargetColumn", cols[inputTargetColumnOrdinal])));
+                    }
+                }
+
+                lookup.Add(inputXE);
+                lookup.Add(outputXE);
+
+                lookupText.AppendLine(lookup.ToString());
+            }
+
+
+            return lookupText.ToString();
+	}
+}
+#>

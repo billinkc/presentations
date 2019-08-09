@@ -1,0 +1,44 @@
+Child Package Template	Child Package Template.Log Package Start	399	5	300	100
+Child Package Template	Child Package Template.Convert Extract Limits to Correct Data Types	373	155	352	100
+Child Package Template	Child Package Template.Data Flow Task	5	305	1088	855
+Child Package Template	Child Package Template.Data Flow Task.Convert String to Date	5	155	300	100
+Child Package Template	Child Package Template.Data Flow Task.Junk Destination	5	605	300	100
+Child Package Template	Child Package Template.Data Flow Task.Translate Error Code	342	605	300	100
+Child Package Template	Child Package Template.Data Flow Task.Add Error Metadata	728	455	300	100
+Child Package Template	Child Package Template.Data Flow Task.Child Package Sample	529	5	300	100
+Child Package Template	Child Package Template.Data Flow Task.Convert Key to String	192	305	300	100
+Child Package Template	Child Package Template.Data Flow Task.Derived Column	529	305	300	100
+Child Package Template	Child Package Template.Data Flow Task.Union Error Rows	342	455	300	100
+Child Package Template	Child Package Template.Data Flow Task.Write Errors to Log	728	605	300	100
+Child Package Template	Child Package Template.Log Package End	399	1210	300	100
+**********Compact Node Bounds
+**********Source Anchors
+Child Package Template	Child Package Template.Log Package Start	Child Package Template.Log Package Start.Output
+Child Package Template	Child Package Template.Convert Extract Limits to Correct Data Types	Child Package Template.Convert Extract Limits to Correct Data Types.Output
+Child Package Template	Child Package Template.Data Flow Task	Child Package Template.Data Flow Task.Output
+Child Package Template	Child Package Template.Data Flow Task.Convert String to Date	Child Package Template.Data Flow Task.Convert String to Date.Output
+Child Package Template	Child Package Template.Data Flow Task.Convert String to Date	Child Package Template.Data Flow Task.Convert String to Date.Error
+Child Package Template	Child Package Template.Data Flow Task.Junk Destination	Child Package Template.Data Flow Task.Junk Destination.Output
+Child Package Template	Child Package Template.Data Flow Task.Add Error Metadata	Child Package Template.Data Flow Task.Add Error Metadata.Output
+Child Package Template	Child Package Template.Data Flow Task.Add Error Metadata	Child Package Template.Data Flow Task.Add Error Metadata.Error
+Child Package Template	Child Package Template.Data Flow Task.Child Package Sample	Child Package Template.Data Flow Task.Child Package Sample.Output
+Child Package Template	Child Package Template.Data Flow Task.Child Package Sample	Child Package Template.Data Flow Task.Child Package Sample.Error
+Child Package Template	Child Package Template.Data Flow Task.Convert Key to String	Child Package Template.Data Flow Task.Convert Key to String.Output
+Child Package Template	Child Package Template.Data Flow Task.Convert Key to String	Child Package Template.Data Flow Task.Convert Key to String.Error
+Child Package Template	Child Package Template.Data Flow Task.Derived Column	Child Package Template.Data Flow Task.Derived Column.Output
+Child Package Template	Child Package Template.Data Flow Task.Derived Column	Child Package Template.Data Flow Task.Derived Column.Error
+Child Package Template	Child Package Template.Data Flow Task.Union Error Rows	Child Package Template.Data Flow Task.Union Error Rows.Output
+Child Package Template	Child Package Template.Data Flow Task.Write Errors to Log	Child Package Template.Data Flow Task.Write Errors to Log.Error
+Child Package Template	Child Package Template.Log Package End	Child Package Template.Log Package End.Output
+**********Sink Anchors
+Child Package Template	Child Package Template.Convert Extract Limits to Correct Data Types	Child Package Template.Log Package Start.Output
+Child Package Template	Child Package Template.Data Flow Task	Child Package Template.Convert Extract Limits to Correct Data Types.Output
+Child Package Template	Child Package Template.Data Flow Task.Convert String to Date	Child Package Template.Data Flow Task.Child Package Sample.Output
+Child Package Template	Child Package Template.Data Flow Task.Junk Destination	Child Package Template.Data Flow Task.Convert String to Date.Output
+Child Package Template	Child Package Template.Data Flow Task.Translate Error Code	Child Package Template.Data Flow Task.Union Error Rows.Output
+Child Package Template	Child Package Template.Data Flow Task.Convert Key to String	Child Package Template.Data Flow Task.Convert String to Date.Error
+Child Package Template	Child Package Template.Data Flow Task.Derived Column	Child Package Template.Data Flow Task.Child Package Sample.Error
+Child Package Template	Child Package Template.Data Flow Task.Union Error Rows	Child Package Template.Data Flow Task.Convert Key to String.Output
+Child Package Template	Child Package Template.Data Flow Task.Union Error Rows	Child Package Template.Data Flow Task.Derived Column.Output
+Child Package Template	Child Package Template.Data Flow Task.Write Errors to Log	Child Package Template.Data Flow Task.Add Error Metadata.Output
+Child Package Template	Child Package Template.Log Package End	Child Package Template.Data Flow Task.Output

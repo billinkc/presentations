@@ -1,5 +1,6 @@
 ﻿# See the end, we only added  Column Encryption Setting=Enabled;
 $connectionString = "Data Source=.\dev2017;Initial Catalog=DemoDb;Integrated Security=True;MultipleActiveResultSets=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;Packet Size=4096;Column Encryption Setting=Enabled;"
+$connectionString = "Data Source=.,17789;Initial Catalog=DemoDb;Integrated Security=False;User Id=sa;Password=Testing1122;MultipleActiveResultSets=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;Packet Size=4096;Column Encryption Setting=Enabled;"
 
 #This is our basic, non-parameterized query
 $query = "SELECT * FROM dbo.Patient AS P WHERE P.PatientName = 'River Tam';"

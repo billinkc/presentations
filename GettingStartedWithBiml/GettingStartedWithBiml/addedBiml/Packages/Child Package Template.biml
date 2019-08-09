@@ -1,0 +1,168 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Packages>
+        <Package Name="Child Package Template" ForcedExecutionValueDataType="Empty" Language="Lcid3081" LoggingMode="Enabled" ConstraintMode="Parallel" SsisPackageType="5" VersionMajor="1" VersionBuild="34" CreatorName="BIMonkey-PC\BI Monkey" CreatorComputerName="BIMONKEY-PC" CreationDate="2010-03-02T20:22:32">
+            <Events>
+                <Event Name="OnError" ForcedExecutionValueDataType="Empty" ConstraintMode="Parallel" EventType="OnError">
+                    <Tasks>
+                        <ExecuteSQL Name="Log Error in Package_Error_Log" ForcedExecutionValueDataType="Empty" ConnectionName="Framework_v1">
+                            <DirectInput>EXECUTE [dbo].[usp_Log_Package_Error] 
+  ? /* @task_execution_id */
+,  ? /* @error_code */
+,  ? /* error_description */</DirectInput>
+                            <Parameters>
+                                <Parameter Name="0" VariableName="Framework.Task_Execution_Id" Length="-1" DataType="Int32" />
+                                <Parameter Name="1" VariableName="System.ErrorCode" Length="-1" DataType="Int32" />
+                                <Parameter Name="2" VariableName="System.ErrorDescription" Length="-1" DataType="String" />
+                            </Parameters>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Event>
+            </Events>
+            <Variables>
+                <Variable Name="Extract_Limit_End" DataType="String" IncludeInDebugDump="Exclude" InheritFromPackageParentConfigurationString="Framework::Extract_Limit_End" Namespace="Framework" />
+                <Variable Name="Extract_Limit_Id" DataType="Int32" IncludeInDebugDump="Exclude" InheritFromPackageParentConfigurationString="Framework::Extract_Limit_Id" Namespace="Framework">0</Variable>
+                <Variable Name="Extract_Limit_Start" DataType="String" IncludeInDebugDump="Exclude" InheritFromPackageParentConfigurationString="Framework::Extract_Limit_Start" Namespace="Framework" />
+                <Variable Name="Extract_Limit_Type" DataType="String" IncludeInDebugDump="Exclude" InheritFromPackageParentConfigurationString="Framework::Extract_Limit_Type" Namespace="Framework" />
+                <Variable Name="Junk" DataType="Int32" IncludeInDebugDump="Exclude" Namespace="Framework">0</Variable>
+                <Variable Name="Rows_Processed" DataType="Int32" IncludeInDebugDump="Exclude" Namespace="Framework">0</Variable>
+                <Variable Name="Task_Execution_Id" DataType="Int32" IncludeInDebugDump="Exclude" InheritFromPackageParentConfigurationString="Framework::Task_Execution_Id" Namespace="Framework">0</Variable>
+            </Variables>
+            <LogEvents>
+                <LogEvent EventName="OnError" />
+            </LogEvents>
+            <Tasks>
+                <ExecuteSQL Name="Log Package Start" ForcedExecutionValueDataType="Empty" ConnectionName="Framework_v1">
+                    <DirectInput>EXECUTE [dbo].[usp_Update_Task_Log] 
+  'Start' /* Task Event */
+,  NULL /* Processing Run Execution Id */
+,  ? /* Task Execution Id */
+,  ? /* Event Datetime */
+,  NULL /* Rows Processed */</DirectInput>
+                    <Parameters>
+                        <Parameter Name="0" VariableName="Framework.Task_Execution_Id" Length="-1" DataType="Int32" />
+                        <Parameter Name="1" VariableName="System.StartTime" Length="-1" DataType="Date" />
+                    </Parameters>
+                </ExecuteSQL>
+                <Script Name="Convert Extract Limits to Correct Data Types" ForcedExecutionValueDataType="Empty" ProjectCoreName="ScriptTask_a366edc72cc945128597cb9a917e9931">
+                    <PrecedenceConstraints>
+                        <Inputs>
+                            <Input OutputPathName="Log Package Start.Output" SsisName="Constraint" />
+                        </Inputs>
+                    </PrecedenceConstraints>
+                    <ScriptTaskProjectReference ScriptTaskProjectName="ScriptTask_a366edc72cc945128597cb9a917e9931" />
+                </Script>
+                <Dataflow Name="Data Flow Task" ForcedExecutionValueDataType="Empty" EngineThreads="5">
+                    <PrecedenceConstraints>
+                        <Inputs>
+                            <Input OutputPathName="Convert Extract Limits to Correct Data Types.Output" SsisName="Constraint 1" />
+                        </Inputs>
+                    </PrecedenceConstraints>
+                    <Transformations>
+                        <DataConversion Name="Convert String to Date">
+                            <DataflowOverrides>
+                                <OutputPath OutputPathName="Output">
+                                    <Columns>
+                                        <Column ErrorRowDisposition="RedirectRow" TruncationRowDisposition="RedirectRow" ColumnName="Date as Date Type" />
+                                    </Columns>
+                                </OutputPath>
+                            </DataflowOverrides>
+                            <InputPath OutputPathName="Child Package Sample.Output" SsisName="Data Conversion Input" />
+                            <Columns>
+                                <Column SourceColumn="Date" TargetColumn="Date as Date Type" DataType="Date" />
+                            </Columns>
+                        </DataConversion>
+                        <RowCount Name="Junk Destination" VariableName="Framework.Junk">
+                            <InputPath OutputPathName="Convert String to Date.Output" SsisName="Row Count Input 1" />
+                        </RowCount>
+                        <ScriptComponentTransformation Name="Translate Error Code">
+                            <InputPath OutputPathName="Union Error Rows.Output" />
+                            <ScriptComponentProjectReference ScriptComponentProjectName="MyName" />
+                        </ScriptComponentTransformation>
+                        <DerivedColumns Name="Add Error Metadata">
+                            <InputPath SsisName="Derived Column Input" />
+                            <Columns>
+                                <Column Name="Task_Execution_Id" DataType="Int32">@[Framework::Task_Execution_Id]</Column>
+                            </Columns>
+                        </DerivedColumns>
+                        <FlatFileSource Name="Child Package Sample" LocaleId="Lcid3081" ConnectionName="Child Package Sample">
+                            <DataflowOverrides>
+                                <OutputPath OutputPathName="Output">
+                                    <Columns>
+                                        <Column ErrorRowDisposition="RedirectRow" TruncationRowDisposition="RedirectRow" ColumnName="Key" />
+                                        <Column ErrorRowDisposition="RedirectRow" TruncationRowDisposition="RedirectRow" ColumnName="Value" />
+                                        <Column ErrorRowDisposition="RedirectRow" TruncationRowDisposition="RedirectRow" ColumnName="Date" />
+                                        <Column ErrorRowDisposition="RedirectRow" TruncationRowDisposition="RedirectRow" ColumnName="Detail" />
+                                    </Columns>
+                                </OutputPath>
+                            </DataflowOverrides>
+                        </FlatFileSource>
+                        <DataConversion Name="Convert Key to String">
+                            <InputPath OutputPathName="Convert String to Date.Error" SsisName="Data Conversion Input" />
+                            <Columns>
+                                <Column SourceColumn="Key" TargetColumn="Row_Id" DataType="String" Length="255" />
+                            </Columns>
+                        </DataConversion>
+                        <DerivedColumns Name="Derived Column">
+                            <InputPath OutputPathName="Child Package Sample.Error" SsisName="Derived Column Input" />
+                            <Columns>
+                                <Column Name="Row_Id" DataType="String" Length="255">(DT_WSTR,255)(DT_NTEXT)[Flat File Source Error Output Column]</Column>
+                            </Columns>
+                        </DerivedColumns>
+                        <UnionAll Name="Union Error Rows">
+                            <InputPaths>
+                                <InputPath OutputPathName="Convert Key to String.Output" SsisName="Union All Input 3">
+                                    <Columns>
+                                        <Column SourceColumn="Key" IsUsed="false" />
+                                        <Column SourceColumn="Value" IsUsed="false" />
+                                        <Column SourceColumn="Date" IsUsed="false" />
+                                        <Column SourceColumn="Detail" IsUsed="false" />
+                                    </Columns>
+                                </InputPath>
+                                <InputPath OutputPathName="Derived Column.Output" SsisName="Union All Input 1">
+                                    <Columns>
+                                        <Column SourceColumn="Flat File Source Error Output Column" IsUsed="false" />
+                                    </Columns>
+                                </InputPath>
+                            </InputPaths>
+                        </UnionAll>
+                        <OleDbDestination Name="Write Errors to Log" ConnectionName="Framework_v1" MaximumInsertCommitSize="10000" DefaultCodePage="1252" FastLoadOptions="">
+                            <DataflowOverrides>
+                                <InputPath InputPathName="OLE DB Destination Input" ErrorOrTruncationOperation="Insert" />
+                            </DataflowOverrides>
+                            <InputPath OutputPathName="Add Error Metadata.Output" SsisName="OLE DB Destination Input" />
+                            <ExternalTableOutput Table="[dbo].[Row_Error_Log]" />
+                            <Columns>
+                                <Column SourceColumn="Task_Execution_Id" TargetColumn="Task_Execution_Id" />
+                                <Column SourceColumn="ErrorCode" TargetColumn="Error_Code" />
+                                <Column SourceColumn="ErrorDescription" TargetColumn="Error_Description" />
+                                <Column SourceColumn="ErrorColumn" TargetColumn="Error_Column" />
+                                <Column SourceColumn="Row_Id" TargetColumn="Row_Identifier" />
+                            </Columns>
+                        </OleDbDestination>
+                    </Transformations>
+                </Dataflow>
+                <ExecuteSQL Name="Log Package End" ForcedExecutionValueDataType="Empty" ConnectionName="Framework_v1">
+                    <PrecedenceConstraints>
+                        <Inputs>
+                            <Input OutputPathName="Data Flow Task.Output" SsisName="Constraint 2" />
+                        </Inputs>
+                    </PrecedenceConstraints>
+                    <DirectInput>EXECUTE [dbo].[usp_Update_Task_Log] 
+  'End' /* Task Event */
+,  NULL /* Processing Run Execution Id */
+,  ? /* Task Execution Id */
+,  NULL /* Event Datetime */
+,  ? /* Rows Processed */</DirectInput>
+                    <Parameters>
+                        <Parameter Name="0" VariableName="Framework.Task_Execution_Id" Length="-1" DataType="Int32" />
+                        <Parameter Name="1" VariableName="Framework.Rows_Processed" Length="-1" DataType="Int32" />
+                    </Parameters>
+                </ExecuteSQL>
+            </Tasks>
+            <Connections>
+                <Connection ConnectionName="Child Package Sample" />
+                <Connection ConnectionName="Framework_v1" />
+            </Connections>
+        </Package>
+    </Packages>
+</Biml>

@@ -1,0 +1,5 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Connections>
+        <FileConnection Name="Package.dtsx" DelayValidation="true" FilePath="\" />
+    </Connections>
+</Biml>

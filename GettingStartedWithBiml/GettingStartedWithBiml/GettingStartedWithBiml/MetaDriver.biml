@@ -1,0 +1,35 @@
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.Sql" #>
+<#@ import namespace="System.Data.SqlClient" #>
+
+<#
+            string connectionString = @"Data Source=localhost\dev2012;Initial Catalog=SoMeta;Integrated Security=true;";
+            DataSet ds = new DataSet();
+            try
+            {
+                string query = "EXECUTE dbo.LookupGetAll";
+                SqlDataAdapter da = new SqlDataAdapter(query, connectionString);
+
+                // I do not get the Table voodoo
+                da.TableMappings.Add("Table", "Source");
+                da.TableMappings.Add("Table1", "Input");
+                da.TableMappings.Add("Table2", "Output");
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+				// Something bad happened, I don't know what
+				;
+            }
+
+
+#>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	<Connections>
+        <Connection Name="OLE_CM Adventureworks2012" ConnectionString="Provider=SQLOLEDB;Data Source=localhost\dev2012;Integrated Security=SSPI;Initial Catalog=AdventureWorks2012" />
+        <Connection Name="CM_SRC" ConnectionString="Data Source=localhost\dev2012;Initial Catalog=AdventureWorks2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+    </Connections>
+	<Packages>
+		<#= CallBimlScript("MetaLookup.biml", ds) #>
+    </Packages>
+</Biml>

@@ -1,0 +1,215 @@
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <!--
+<#
+    string connectionStringSource = @"Data Source=SQLSRV161\ODSDEV;Initial Catalog=ODSPreProcessing;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;";
+
+    string SrcTableQuery = @"SELECT OQ.TABLE_NAME FROM OPENQUERY ( [KRONSUPGR] , 'SELECT DISTINCT ATC.TABLE_NAME FROM ALL_TAB_COLUMNS ATC WHERE ATC.OWNER = ''TKCSOWNER'' AND ( ATC.TABLE_NAME LIKE ''WAT%'' OR ATC.TABLE_NAME = ''CALENDAR'' ) ') AS OQ
+
+	;
+";
+
+    DataTable dt = null;
+    dt = ExternalDataAccess.GetDataTable(connectionStringSource, SrcTableQuery);
+    string headerTemplate = @"<Package IsEntryPoint=""true"" PackageName=""{0}"" />";
+    StringBuilder sb = new StringBuilder();
+#>    
+-->
+    <!--
+    Contrast this with the Mist version
+    -->
+    <Packages>
+    <# 
+        foreach (DataRow dr in dt.Rows) 
+        { 
+        sb.Append(string.Format(headerTemplate, dr[0].ToString()));
+    #>
+
+
+        <Package ConstraintMode="Linear"
+                Name="<#=dr[0].ToString()#>"
+        >
+            <!-- This puts a place holder into our packages for SVN tag substitution -->
+            <Annotations>
+                <Annotation AnnotationType="Description">$Header$</Annotation>
+            </Annotations>
+			<Connections>
+                <Connection ConnectionName="Audit" />
+				<Connection ConnectionName="ODSPreProcessing" />
+			</Connections>
+			<Parameters>
+				<Parameter Name="ParentPackageID" DataType="String">00000000-0000-0000-0000-000000000000</Parameter>
+			</Parameters>
+                    <Events>
+                        <Event EventType="OnPostExecute" ConstraintMode="Linear" Name="string"></Event>
+                    </Events>
+			
+            <Variables>
+                <Variable Name="CurrentFileName" DataType="String">C:\ssisdata\RevenueManagement\Input\CARS.MOF1.txt</Variable>
+                <Variable Name="SchemaName" DataType="String">RAW</Variable>
+                <Variable Name="TableName" DataType="String"><#=dr[0].ToString()#></Variable>
+                <Variable Name="FileMask" DataType="String"><#=dr[0].ToString()#>.txt</Variable>
+                <Variable Name="SubjectArea" DataType="String">Kronos</Variable>
+
+                <Variable Name="RowCountDelete" DataType="Int32">0</Variable>
+                <Variable Name="RowCountError" DataType="Int32">0</Variable>
+                <Variable Name="RowCountInsert" DataType="Int32">0</Variable>
+                <Variable Name="RowCountUpdate" DataType="Int32">0</Variable>
+
+                <!-- this addresses a shortcoming in the current version of bidshelper -->
+				<Variable Name="ServerExecutionID" Namespace="System" ReadOnly="true" RaiseChangedEvent="false" IncludeInDebugDump="Include" DataType="Int64">0</Variable>
+				<Variable Name="QueryAuditStart" DataType="String" EvaluateAsExpression="false">EXECUTE [AUD].[PackageControlStart] @PackageName = ?, @PackageId = ?, @ParentPackageId = ?, @ExecutionId = ?, @StartTime = ?;</Variable>
+				<Variable Name="QueryAuditUpdate" DataType="String" EvaluateAsExpression="false">EXECUTE [AUD].[PackageControlStop] @PackageId = ?, @ExecutionId = ?, @InsertRowQuantity = ?, @UpdateRowQuantity = ?, @DeleteRowQuantity = ?, @ErrorRowQuantity = ?;</Variable>
+                <Variable Name="QuerySource" DataType="String">SELECT * FROM OPENQUERY([KRONSUPGR], 'SELECT * FROM <#=dr[0].ToString()#>') AS OQ;</Variable>
+                <Variable Name="QualifiedTableSchema"
+						  DataType="String"
+						  EvaluateAsExpression="true">"[" +  @[User::SchemaName] + "].[" +  @[User::TableName] + "]"</Variable>
+                <Variable Name="QueryTruncate" DataType="String" EvaluateAsExpression="true">"EXECUTE msdb.dbo.spTruncateTable 'ODSPreProcessing','" + @[User::SchemaName] + "','" + @[User::TableName] + "'"</Variable>
+
+                <Variable Name="FolderInput"
+						  DataType="String"
+						  EvaluateAsExpression="true">@[$Project::FolderBase] +  @[User::SubjectArea] + "\\Input"</Variable>
+                <Variable Name="FolderArchive"
+						  DataType="String"
+						  EvaluateAsExpression="true">@[$Project::FolderBase] +  @[User::SubjectArea] + "\\Archive"</Variable>
+                <Variable Name="FolderOutput"
+						  DataType="String"
+						  EvaluateAsExpression="true">@[$Project::FolderBase] +  @[User::SubjectArea] + "\\Output"</Variable>
+
+            </Variables>
+            <Tasks>
+				<ExecuteSQL Name="SQL Begin Audit"
+					ConnectionName="Audit">
+					<VariableInput VariableName="User.QueryAuditStart"></VariableInput>
+					<Parameters>
+						<Parameter
+							Name="0"
+							DataType="String"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.PackageName"
+						/>
+						<Parameter
+							Name="1"
+							DataType="Guid"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.PackageID"
+						/>
+						<!-- Thie Variable name for the parameter must match package name -->
+						<Parameter
+							Name="2"
+							DataType="Guid"
+							Direction="Input"
+							Length="-1"
+							VariableName="<#=dr[0].ToString()#>.ParentPackageID"
+						/>
+							<!--VariableName="<#=dr[0].ToString()#>.ParentPackageID"-->
+						<Parameter
+							Name="3"
+							DataType="Int64"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.ServerExecutionID"
+						/>
+						<Parameter
+							Name="4"
+							DataType="Date"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.StartTime"
+						/>
+					</Parameters>
+				</ExecuteSQL>
+
+				<ExecuteSQL 
+					Name="SQL Truncate destination"
+					ConnectionName="ODSPreProcessing">
+					<VariableInput VariableName="User.QueryTruncate" />
+				</ExecuteSQL>
+
+                        <Dataflow Name="DFT X" >
+                            <Transformations>
+                        <OleDbSource
+                            Name="OLE_SRC <#=dr[0].ToString()#>"
+                            ConnectionName="ODSPreProcessing"
+                        >
+                        <VariableInput VariableName="User.QuerySource" />
+                        </OleDbSource>
+
+                                <RowCount VariableName="User.RowCountInsert" Name="CNT Source"></RowCount>
+						
+                                <OleDbDestination
+                                    Name="OLE_DST RAW_<#=dr[0].ToString()#>"
+                                    ConnectionName="ODSPreProcessing"
+                                    KeepIdentity="true"
+                                    TableLock="true"
+                                    UseFastLoadIfAvailable="true"
+                                    KeepNulls="true"
+                                    >
+                                    <TableFromVariableOutput VariableName="User.QualifiedTableSchema" />                        
+                                </OleDbDestination>
+                            </Transformations>
+                            <Expressions>
+                                <Expression PropertyName="Name">"DFT Load " + @[User::TableName]</Expression>
+                            </Expressions>
+                        </Dataflow>
+
+                <ExecuteSQL Name="SQL Close Audit"
+							ConnectionName="Audit">
+					<VariableInput VariableName="User.QueryAuditUpdate"></VariableInput>
+					<Parameters>
+						<Parameter
+							Name="0"
+							DataType="Guid"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.PackageID"
+						/>
+						<Parameter
+							Name="1"
+							DataType="Int64"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.ServerExecutionID"
+						/>
+                        <Parameter
+							Name="2"
+							DataType="Int32"
+							VariableName="User.RowCountInsert"
+						/>
+                        <Parameter
+							Name="3"
+							DataType="Int32"
+							VariableName="User.RowCountUpdate"
+						/>
+                        <Parameter
+							Name="4"
+							DataType="Int32"
+							VariableName="User.RowCountDelete"
+						/>
+                        <Parameter
+							Name="5"
+							DataType="Int32"
+							VariableName="User.RowCountError"
+						/>
+					</Parameters>
+				</ExecuteSQL>
+            </Tasks>
+        </Package>
+        <# } #>
+    </Packages>
+
+
+    <PackageProjects>
+        <PackageProject Name="Kronos Import Raw">
+            <Parameters>
+                <Parameter Name="FolderBase" DataType="String">C:\ssisdata\</Parameter>
+            </Parameters>
+            <Packages>
+<#=sb.ToString()#>
+            </Packages>
+        </PackageProject>
+    </PackageProjects>
+
+</Biml>
+

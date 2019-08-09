@@ -1,0 +1,113 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <ScriptProjects>
+        <ScriptTaskProject Name="ScriptTask_348cfa51a5a848289abce6baae116c4c" EntryPoint="ScriptMain" ProjectCoreName="ScriptTask_348cfa51a5a848289abce6baae116c4c">
+            <Files>
+                <File BuildAction="None" Path="dts://Scripts/ScriptTask_348cfa51a5a848289abce6baae116c4c/ScriptTask_348cfa51a5a848289abce6baae116c4c.vsaproj">&lt;VisualStudioProject&gt;
+    &lt;VisualBasic
+        Version = "8.0.50727.1826"
+        MVID = "{00000000-0000-0000-0000-000000000000}"
+        ProjectType = "Local"
+        ProductVersion = "8.0.50727"
+        SchemaVersion = "2.0"
+    &gt;
+        &lt;Build&gt;
+            &lt;Settings
+                DefaultNamespace = "ScriptTask_348cfa51a5a848289abce6baae116c4c"
+                OptionCompare = "0"
+                OptionExplicit = "1"
+                OptionStrict = "1"
+                ProjectName = "ScriptTask_348cfa51a5a848289abce6baae116c4c"
+                ReferencePath = "C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.ScriptTask\9.0.242.0__89845dcd8080cc91\;C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.ManagedDTS\9.0.242.0__89845dcd8080cc91\"
+                TreatWarningsAsErrors = "false"
+                WarningLevel = "1"
+                RootNamespace = "ScriptTask_348cfa51a5a848289abce6baae116c4c"
+            &gt;
+                &lt;Config
+                    Name = "Debug"
+                    DefineConstants = ""
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DebugSymbols = "true"
+                    RemoveIntegerChecks = "false"
+                /&gt;
+            &lt;/Settings&gt;
+            &lt;References&gt;
+                &lt;Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                /&gt;
+                &lt;Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.ScriptTask"
+                    AssemblyName = "Microsoft.SqlServer.ScriptTask"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.ManagedDTS"
+                    AssemblyName = "Microsoft.SqlServer.ManagedDTS"
+                /&gt;
+            &lt;/References&gt;
+            &lt;Imports&gt;
+                &lt;Import Namespace = "Microsoft.VisualBasic" /&gt;
+            &lt;/Imports&gt;
+        &lt;/Build&gt;
+        &lt;Files&gt;
+            &lt;Include&gt;
+                &lt;File
+                    RelPath = "ScriptMain"
+                    BuildAction = "Compile"
+                    ItemType = "2"
+                /&gt;
+                &lt;VSAAppGlobal
+                    VSAAppGlobalName = "Dts"
+                    ItemType = "1"
+                    VSAAppGlobalType = "Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptObjectModel"
+                /&gt;
+            &lt;/Include&gt;
+        &lt;/Files&gt;
+        &lt;Folders&gt;
+            &lt;Include/&gt;
+        &lt;/Folders&gt;
+    &lt;/VisualBasic&gt;
+&lt;/VisualStudioProject&gt;</File>
+                <File BuildAction="None" Path="dts://Scripts/ScriptTask_348cfa51a5a848289abce6baae116c4c/ScriptMain.vsaitem">' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic
+' The ScriptMain class is the entry point of the Script Task.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+
+Public Class ScriptMain
+
+	' The execution engine calls this method when the task executes.
+	' To access the object model, use the Dts object. Connections, variables, events,
+	' and logging features are available as static members of the Dts class.
+	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+	' 
+	' To open Code and Text Editor Help, press F1.
+	' To open Object Browser, press Ctrl+Alt+J.
+
+	Public Sub Main()
+		'
+        ' Set Last Run Id to equal Current Run Id now it has been processed
+        Dts.Variables("Framework::Last_Run_Execution_Id").Value = Dts.Variables("Framework::Current_Run_Execution_Id").Value
+
+		Dts.TaskResult = Dts.Results.Success
+
+    End Sub
+
+End Class</File>
+            </Files>
+            <ReadOnlyVariables>
+                <Variable VariableName="Current_Run_Execution_Id" DataType="Int32" Namespace="Framework" />
+            </ReadOnlyVariables>
+            <ReadWriteVariables>
+                <Variable VariableName="Last_Run_Execution_Id" DataType="Int32" Namespace="Framework" />
+            </ReadWriteVariables>
+        </ScriptTaskProject>
+    </ScriptProjects>
+</Biml>

@@ -1,0 +1,1004 @@
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Packages>
+        <Package Name="CessionFactLoad" ConstraintMode="Linear">
+            <Variables>
+                <Variable DataType="String" Name="CS_SSISConfiguration" Namespace="User">unknown</Variable>
+                <Variable DataType="String" Name="CS_DatamartStage" Namespace="User">unknown</Variable>
+                <Variable DataType="String" Name="CS_Everest" Namespace="User">unknown</Variable>
+                <Variable DataType="String" Name="CS_EverestDatamart" Namespace="User">unknown</Variable>
+                <Variable DataType="String" Name="QueryServer" Namespace="User">SELECT @@ServerName + '.' + DB_Name();</Variable>
+                <Variable Name="ParentPkgExecKey" DataType="Int32" InheritFromPackageParentConfigurationString="PkgExecKey">-1</Variable>
+                <Variable Name="PkgExecKey" DataType="Int32">-1</Variable>
+                <Variable Name="RowCount_Change_1" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Change_2" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Change_3" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Error_1" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Error_2" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Error_3" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Extract_1" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Extract_2" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Extract_3" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Insert_1" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Insert_2" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Insert_3" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Update_1" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Update_2" DataType="Int32">0</Variable>
+                <Variable Name="RowCount_Update_3" DataType="Int32">0</Variable>
+                <Variable Name="AssumedCompanyKey" DataType="Int16" Namespace="Unknown">-1</Variable>
+                <Variable Name="AssumedProposalKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="AssumedQuoteKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="AssumedTreatyKey" DataType="Int16" Namespace="Unknown">-1</Variable>
+                <Variable Name="CessionCancelDateKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="CessionCategoryKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="CessionKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="IssuedLocationKey" DataType="Int16" Namespace="Unknown">-1</Variable>
+                <Variable Name="OriginalIssueDateKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="PaidToDateKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="PolicyDateKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="PolicyAgeDurationKey" DataType="Int16" Namespace="Unknown">-1</Variable>
+                <Variable Name="PricingVariableKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="ReinsuranceDurationKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="ReinsuranceEffectiveDateKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="ResidenceLocationKey" DataType="Int16" Namespace="Unknown">-1</Variable>
+                <Variable Name="RetroKey" DataType="Int32" Namespace="Unknown">-1</Variable>
+                <Variable Name="QueryAssumedCompanyKey" DataType="String" Namespace="Unknown">SELECT CAST(-1 AS smallint) AS Unknown</Variable>
+                <Variable Name="QueryAssumedProposalKey" DataType="String" Namespace="Unknown">SELECT -1 AS Unknown</Variable>
+                <Variable Name="QueryAssumedQuoteKey" DataType="String" Namespace="Unknown">SELECT -1 AS Unknown</Variable>
+                <Variable Name="QueryAssumedTreatyKey" DataType="String" Namespace="Unknown">SELECT CAST(-1 AS smallint) AS Unknown</Variable>
+                <Variable Name="QueryCessionCancelDateKey" DataType="String" Namespace="Unknown">SELECT 
+    CessionCancelDateKey = d.DateKey
+FROM 
+    CommonDim.DimDate d
+WHERE
+    d.DateType = 'N/A';
+</Variable>
+                <Variable Name="QueryCessionCategoryKey" DataType="String" Namespace="Unknown">SELECT
+    CessionCategoryKey = c.CessionCategoryKey
+FROM 
+    CommonDim.DimCessionCategory c
+WHERE
+    c.CessionStatus = 'N/A'
+    AND c.HowCeded = 'Unknown'
+    AND c.LineOfBusinessId = '5BB5CD73-77D9-4AE7-80DF-9842704EC3F7'
+    AND c.ReinsuranceType = 'Unknown'
+    AND c.BenefitRiderTypeId = '32799DC4-1B8E-4854-8F65-5D012E74F737'
+    AND c.RenewabilityTypeId = '00000000-0000-0000-0000-000000000001';
+</Variable>
+                <Variable Name="QueryCessionKey" DataType="String" Namespace="Unknown">SELECT -1 AS Unknown</Variable>
+                <Variable Name="QueryIssuedLocationKey" DataType="String" Namespace="Unknown">SELECT 
+    IssuedLocationKey = dl.LocationKey
+FROM 
+    CommonDim.DimLocation dl
+WHERE
+    dl.CountryName = 'Unknown'
+    AND dl.StateName = 'Unknown'
+    AND dl.LocationKey != - 1;
+</Variable>
+                <Variable Name="QueryOriginalIssueDateKey" DataType="String" Namespace="Unknown">SELECT 
+    CessionCancelDateKey = d.DateKey
+FROM 
+    CommonDim.DimDate d
+WHERE
+    d.DateType = 'N/A';
+</Variable>
+                <Variable Name="QueryPaidToDateKey" DataType="String" Namespace="Unknown">SELECT 
+    CessionCancelDateKey = d.DateKey
+FROM 
+    CommonDim.DimDate d
+WHERE
+    d.DateType = 'N/A';
+</Variable>
+                <Variable Name="QueryPolicyDateKey" DataType="String" Namespace="Unknown">SELECT 
+    CessionCancelDateKey = d.DateKey
+FROM 
+    CommonDim.DimDate d
+WHERE
+    d.DateType = 'N/A';
+</Variable>
+                <Variable Name="QueryPolicyAgeDurationKey" DataType="String" Namespace="Unknown">SELECT d.AgeDurationKey FROM CommonDim.DimAgeDuration d WHERE d.Duration = 'Unknown' AND d.Age = 'Unknown';</Variable>
+                <Variable Name="QueryPricingVariableKey" DataType="String" Namespace="Unknown">SELECT -1 AS Unknown</Variable>
+                <Variable Name="QueryReinsuranceDurationKey" DataType="String" Namespace="Unknown">SELECT -1 AS Unknown</Variable>
+                <Variable Name="QueryReinsuranceEffectiveDateKey" DataType="String" Namespace="Unknown">SELECT 
+    CessionCancelDateKey = d.DateKey
+FROM 
+    CommonDim.DimDate d
+WHERE
+    d.DateType = 'N/A';
+</Variable>
+                <Variable Name="QueryResidenceLocationKey" DataType="String" Namespace="Unknown">SELECT -1 AS Unknown</Variable>
+                <Variable Name="QueryRetroKey" DataType="String" Namespace="Unknown">SELECT -1 AS Unknown</Variable>
+                <Variable Name="AuditKeyNormal" DataType="Int32" IncludeInDebugDump="Include">-1</Variable>
+                <Variable Name="AuditUpdateDefault" DataType="Int32" IncludeInDebugDump="Include">-1</Variable>
+                <Variable DataType="String" Name="QueryRebuildIndexes" Namespace="User" EvaluateAsExpression="true">"ALTER INDEX ALL ON " + @[User::QualifiedTableName] + " REBUILD WITH(SORT_IN_TEMPDB = ON, ONLINE = ON);"</Variable>
+                <Variable DataType="String" Name="QueryUpdateStatistics" Namespace="User" EvaluateAsExpression="true">"UPDATE STATISTICS " + @[User::QualifiedTableName] + ";"</Variable>
+                <Variable DataType="String" Name="QualifiedTableName" Namespace="User" EvaluateAsExpression="true">"[" + @[User::SchemaName] + "].[" + @[User::TableName] + "]"</Variable>
+                <Variable DataType="String" Name="QualifiedTableNameProblem" Namespace="User" EvaluateAsExpression="true">"[" + @[User::SchemaName] + "].[" + @[User::TableName] + "]"</Variable>
+                <Variable DataType="String" Name="QualifiedTableNameError" Namespace="User" EvaluateAsExpression="true">"[" + @[User::SchemaName] + "].[" + @[User::TableName] + "]"</Variable>
+                <Variable DataType="String" Name="QueryTruncate" Namespace="User" EvaluateAsExpression="true">"TRUNCATE TABLE " + @[User::QualifiedTableName] + ";"</Variable>
+                <Variable DataType="String" Name="SchemaName" Namespace="User">Cession</Variable>
+                <Variable DataType="String" Name="TableName" Namespace="User">CessionFact_bfellows</Variable>
+                <Variable DataType="String" Name="TableNameProblem" Namespace="User">CessionFactRawProblem_bfellows</Variable>
+                <Variable DataType="String" Name="TableNameError" Namespace="User">ErrorCessionFact_bfellows</Variable>
+                <Variable DataType="String" Name="QueryCacheDimDate" Namespace="User">SELECT 
+    DateKey = d.DateKey
+,   FullDatetime = d.FullDatetime
+FROM 
+    CommonDim.DimDate d
+WHERE
+     d.DateType = 'Normal'
+ORDER BY
+    d.FullDatetime;
+</Variable>
+                <Variable DataType="String" Name="QuerySource" Namespace="User">SET NOCOUNT ON;
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+SELECT TOP 100
+    ISNULL(cec.CessionId,'00000000-0000-0000-0000-000000000001') CessionId
+,   ISNULL(cec.CedingCompanyId,'00000000-0000-0000-0000-000000000001') CedingCompanyId
+,   cec.CessionCancelDate
+,   ISNULL(cec.CessionCategoryTypeId,'00000000-0000-0000-0000-000000000001') CessionCategoryTypeId
+,   ISNULL(cec.CessionStatusId,'00000000-0000-0000-0000-000000000001') CessionStatusId
+,   ISNULL(cec.ClientPlanCodeId,'00000000-0000-0000-0000-000000000001') ClientPlanCodeId
+,   ISNULL(cec.InsuredMortalityTableRating,1) GeneraliMortalityRating
+,   ISNULL(cec.InsuredTableNumber,0) GeneraliMortalityTable
+,   CONVERT(NCHAR(1),CASE WHEN (ISNULL(cec.InsuredPermFlatExtraAmount,0) + ISNULL(cec.InsuredTempFlatExtraAmount,0)) &gt; 0 THEN 'Y' ELSE 'N' END) HasFlatExtra
+,   ISNULL(cec.HowCededTypeId,'F23D4D9A-3A02-446D-BE5A-D1CCAA658E9E') HowCededId
+,   ISNULL(cec.InsuredIssueAge,0) InsuredIssueAge
+,   CONVERT(NCHAR(1),CASE WHEN cec.IsConversionPlan = 1 THEN 'Y' ELSE 'N' END) IsConversion
+,   ISNULL(cec.IssuedCountryId,'00000000-0000-0000-0000-000000000000') AS IssuedCountryId
+,   CASE WHEN cec.IssuedCountryId = 'BFE934A1-A693-473D-B55B-FB0FF5BD0A70' THEN ISNULL(cec.IssuedProvinceId,'00000000-0000-0000-0000-000000000000')
+        WHEN cec.IssuedCountryId = '3DBC8F45-A9CD-4821-BEAE-57341E9F2AA9' THEN ISNULL(cec.IssuedStateId,'00000000-0000-0000-0000-000000000000')
+        ELSE '00000000-0000-0000-0000-000000000000' END IssuedStateId
+,   ISNULL(cec.LineOfBusinessId,'6355C28C-06C3-4DF9-9939-662516D2C791') LineOfBusinessId
+,   cec.OriginalIssueDate
+,   cec.PaidToDate
+,   cec.PolicyDate
+,   ISNULL(cec.PolicyDuration,1) PolicyDuration
+,   ISNULL(uuwc.PreferredLevelTypeId,'00000000-0000-0000-0000-000000000000') PreferredLevelTypeId
+,   ISNULL(cec.ProposalId,'00000000-0000-0000-0000-000000000001') ProposalId
+,   ISNULL(cec.QuoteId,'00000000-0000-0000-0000-000000000000') QuoteId
+,   ISNULL(cec.QuoteBandId,'00000000-0000-0000-0000-000000000000') QuoteBandId
+,   ISNULL(cec.QuotePlanId,'00000000-0000-0000-0000-000000000001') QuotePlanId
+,   ISNULL(cec.ReinsuranceDuration,1) ReinsuranceDuration
+,   cec.ReinsuranceEffectiveDate
+,   ISNULL(cec.ReinsuranceTypeId,'A230B201-B062-4431-BB02-5CEF0BC0622F') ReinsuranceTypeId
+,   ISNULL(cec.ResidenceCountryId,'00000000-0000-0000-0000-000000000000') ResidenceCountryId
+,   CASE WHEN cec.ResidenceCountryId = 'BFE934A1-A693-473D-B55B-FB0FF5BD0A70' THEN ISNULL(cec.ResidenceProvinceId,'00000000-0000-0000-0000-000000000000')
+        WHEN cec.ResidenceCountryId = '3DBC8F45-A9CD-4821-BEAE-57341E9F2AA9' THEN ISNULL(cec.ResidenceStateId,'00000000-0000-0000-0000-000000000000')
+        ELSE '00000000-0000-0000-0000-000000000000' END ResidenceStateId
+,   ISNULL(ISNULL(cec.OverrideRetentionStackId,cec.RetentionStackId),'00000000-0000-0000-0000-000000000001') RetentionStackId
+,   ISNULL(ISNULL(cec.OverrideRetroPoolId,cec.RetroPoolId),'00000000-0000-0000-0000-000000000001') RetroPoolId
+,   ISNULL(uuwc2.PreferredLevelTypeId,'00000000-0000-0000-0000-000000000000') RetroPreferredLevelTypeId
+,   ISNULL(uuwc2.UWClassId,'00000000-0000-0000-0000-000000000000') RetroRiskClassId
+,   ISNULL(uuwc2.TobaccoTypeId,'00000000-0000-0000-0000-000000000000') RetroTobaccoTypeId
+,   ISNULL(uuwc.UWClassId,'00000000-0000-0000-0000-000000000000') RiskClassId
+,   ISNULL(ci.GenderId,'373F19B7-90CF-463B-A331-25622911C275') SexId
+,   ISNULL(cec.TerminationReasonTypeId,'00000000-0000-0000-0000-000000000001') TerminationReasonTypeId
+,   ISNULL(uuwc.TobaccoTypeId,'00000000-0000-0000-0000-000000000000') TobaccoTypeId
+,   ISNULL(cec.TreatyId,'00000000-0000-0000-0000-000000000001') TreatyId
+,   ISNULL(cec.BaseAllowanceAmount,0) BaseAllowanceAmount
+,   ISNULL(cec.BaseFaceAmount,0) BaseFaceAmount
+,   ISNULL(cec.BaseNARAmount,0) BaseNARAmount
+,   ISNULL(cec.BasePremiumAmount,0) BasePremiumAmount
+,   ISNULL(cec.BaseReinsuredAmount,0) BaseReinsuredAmount
+,   ISNULL(cec.BaseRetentionAmount,0) BaseRetentionAmount
+,   ISNULL(cec.CashSurrenderValue,0) CashSurrenderValue
+,   ISNULL(cec.DividendAmount,0) DividendAmount
+,   ISNULL(cec.ExtraAllowanceAmount1,0) ExtraAllowanceAmount1
+,   ISNULL(cec.ExtraAllowanceAmount2,0) ExtraAllowanceAmount2
+,   ISNULL(cec.ExtraAllowanceAmount3,0) ExtraAllowanceAmount3
+,   ISNULL(cec.ExtraPremiumAmount1,0) ExtraPremiumAmount1
+,   ISNULL(cec.ExtraPremiumAmount2,0) ExtraPremiumAmount2
+,   ISNULL(cec.ExtraPremiumAmount3,0) ExtraPremiumAmount3
+,   ISNULL(cec.InsuredPermFlatExtraAmount,0) InsuredPermFlatExtraAmount
+,   ISNULL(cec.InsuredPermFlatExtraDuration,0) InsuredPermFlatExtraDuration
+,   ISNULL(cec.InsuredTempFlatExtraAmount,0) InsuredTempFlatExtraAmount
+,   ISNULL(cec.InsuredTempFlatExtraDuration,0) InsuredTempFlatExtraDuration
+,   ISNULL(cec.PolicyFeeAmount,0) PolicyFeeAmount
+,   ISNULL(cec.PolicyFeeAllowanceAmount,0) PolicyFeeAllowanceAmount
+,   ISNULL(cec.PremiumTaxAmount,0) PremiumTaxAmount
+,   CAST(ISNULL(RC.RetrocededAmount, 0) AS decimal(18,4)) AS RetrocededAmount
+FROM 
+    Cession.Cession cec
+    LEFT JOIN 
+        Cession.Insured ci
+        ON cec.InsuredId = ci.InsuredId
+    LEFT JOIN 
+        Underwriting.UWClass uuwc
+        ON cec.GeneraliRiskClassId = uuwc.UWClassId
+            AND uuwc.UWClassTypeId = '162AFF86-CEE2-4D4A-93A0-28993F3664B5'
+    LEFT JOIN 
+        Underwriting.UWClass uuwc2
+        ON cec.RetroRiskClassId = uuwc2.UWClassId
+            AND uuwc2.UWClassTypeId = 'C294208C-90A3-407A-A9D7-4C246ECD160D'
+    LEFT OUTER JOIN
+    (
+        -- Compute retrocededamount
+        SELECT
+            D.CessionId
+        ,   CAST(ISNULL(SUM(D.RetrocededAmount), 0) AS decimal(18,4)) AS RetrocededAmount
+        FROM
+        (
+            SELECT
+                CC.CessionId
+            ,   CASE
+                    WHEN CC.IsActive = 1
+                        THEN ns.SplitAmount
+                    WHEN CC.IsActive = 0
+                        AND CC.CessionCancelDate BETWEEN ns.EffectiveDate AND DATEADD(DAY, 1, NS.CancelDate)
+                        THEN NS.SplitAmount
+                    ELSE 0
+                END AS RetrocededAmount
+            FROM 
+                Cession.Cession CC 
+                LEFT JOIN 
+                    Cession.RetroCession RC  
+                    on RC.CessionId = CC.CessionId 
+                LEFT JOIN 
+                    Cession.NARSplit NS  
+                    on NS.NARSplitId = RC.NARSplitId
+        ) D
+        GROUP BY
+            D.CessionId
+    ) RC
+    ON RC.CessionId = cec.CessionId
+WHERE 
+    cec.LineOfBusinessId = '5BB5CD73-77D9-4AE7-80DF-9842704EC3F7';
+</Variable>
+            </Variables>
+            <Tasks>
+                <ExecutePackage Name="EPT MaintainDimAuditInitialize" ForcedExecutionValueDataType="Empty" PackagePassword="">
+                    <SqlServer ConnectionName="DatamartStage" PackagePath="\DatamartPackages\Auditing\MaintainDimAuditInitialize" />
+                </ExecutePackage>
+                <!-- 
+					Set our unknown lookup values 
+				-->
+                <Container Name="SEQC Lookup Unknowns" ConstraintMode="Parallel">
+                    <Tasks>
+                        <ExecuteSQL Name="SQL Assign AssumedCompanyKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryAssumedCompanyKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.AssumedCompanyKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign AssumedProposalKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryAssumedProposalKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.AssumedProposalKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign AssumedQuoteKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryAssumedQuoteKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.AssumedQuoteKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign AssumedTreatyKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryAssumedTreatyKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.AssumedTreatyKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign CessionCancelDateKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryCessionCancelDateKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.CessionCancelDateKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign CessionCategoryKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryCessionCategoryKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.CessionCategoryKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign CessionKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryCessionKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.CessionKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign IssuedLocationKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryIssuedLocationKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.IssuedLocationKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign OriginalIssueDateKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryOriginalIssueDateKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.OriginalIssueDateKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign PaidToDateKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryPaidToDateKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.PaidToDateKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign PolicyDateKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryPolicyDateKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.PolicyDateKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign PolicyAgeDurationKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryPolicyAgeDurationKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.PolicyAgeDurationKey" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign ReinsuranceEffectiveDateKey" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.Unknown.QueryReinsuranceEffectiveDateKey" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.Unknown.ReinsuranceEffectiveDateKey" />
+                            </Results>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Container>
+                <!-- 
+					This might go away 
+				-->
+                <Container Name="SEQC Collection Connection Data" ConstraintMode="Linear">
+                    <Tasks>
+                        <ExecuteSQL Name="SQL Assign CS_DatamartStage" ResultSet="SingleRow" ConnectionName="DatamartStage">
+                            <VariableInput VariableName="CessionFactLoad.User.QueryServer" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.User.CS_DatamartStage" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign CS_SSISConfiguration" ResultSet="SingleRow" ConnectionName="SSIS Configuration">
+                            <VariableInput VariableName="CessionFactLoad.User.QueryServer" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.User.CS_SSISConfiguration" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign CS_Everest" ResultSet="SingleRow" ConnectionName="Everest">
+                            <VariableInput VariableName="CessionFactLoad.User.QueryServer" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.User.CS_Everest" />
+                            </Results>
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Assign CS_EverestDatamart" ResultSet="SingleRow" ConnectionName="EverestDatamart">
+                            <VariableInput VariableName="CessionFactLoad.User.QueryServer" />
+                            <Results>
+                                <Result Name="0" VariableName="CessionFactLoad.User.CS_EverestDatamart" />
+                            </Results>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Container>
+                <Container Name="SEQC Do work" ConstraintMode="Linear">
+                    <Tasks>
+                        <!-- 
+					Cache DimDate data 
+				-->
+                        <Dataflow Name="DFT Load Cache Connection Manager">
+                            <Transformations>
+                                <OleDbSource Name="OLE_SRC Load CommonDim_DimDate" ConnectionName="DatamartStage">
+                                    <VariableInput VariableName="CessionFactLoad.User.QueryCacheDimDate" />
+                                </OleDbSource>
+                                <Cache ConnectionName="CCM_DimDate" Name="CCM_DEST CCM_DimDate">
+                                    <Columns>
+                                        <Column SortKeyPosition="1" SourceColumn="DateKey" TargetColumn="DateKey" />
+                                        <Column SourceColumn="FullDatetime" TargetColumn="FullDatetime" />
+                                    </Columns>
+                                </Cache>
+                            </Transformations>
+                        </Dataflow>
+                        <!--
+                            Cross your fingers
+                        -->
+                        <ExecuteSQL Name="SQL Truncate target" ConnectionName="EverestDatamart">
+                            <VariableInput VariableName="CessionFactLoad.User.QueryTruncate" />
+                        </ExecuteSQL>
+                        <!-- 
+					Disable indexes 
+				-->
+                        <ExecuteSQL Name="SQL Disable Indexes" ConnectionName="EverestDatamart">
+                            <DirectInput>ALTER INDEX CessionFact_AssumedProposal ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_AssumedQuote ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_AssumedTreaty ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_CessionCancelDate ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_CessionCategory ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_IssuedLocation ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_OriginalIssueDate ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_PaidToDate ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_PolicyAgeDuration ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_PolicyDate ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_PricingVariable ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_ReinsuranceDuration ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_ReinsuranceEffectiveDate ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_ResidenceLocation ON Cession.CessionFact DISABLE;
+ALTER INDEX CessionFact_Retro ON Cession.CessionFact DISABLE;
+ALTER INDEX PK_CessionFact ON Cession.CessionFact DISABLE;</DirectInput>
+                        </ExecuteSQL>
+                        <!-- 
+					Load the data warehouse data 
+				-->
+                        <Dataflow Name="DFT Load DW">
+                            <Transformations>
+                                <OleDbSource Name="OLE_SRC Cession_Cession" ConnectionName="Everest">
+                                    <VariableInput VariableName="CessionFactLoad.User.QuerySource" />
+                                </OleDbSource>
+                                <RowCount Name="CNT Original" VariableName="CessionFactLoad.User.RowCount_Extract_1" />
+                                <!-- AssumedCompanyKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP AssumedCompanyKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT 
+    c.CompanyKey AS AssumedCompanyKey 
+,   c.CompanyId AS CedingCompanyId
+FROM 
+    CommonDim.DimCompany c
+WHERE
+    c.RowIsCurrent = 'Y';
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="CedingCompanyId" TargetColumn="CedingCompanyId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="AssumedCompanyKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER AssumedCompanyKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int16" Name="AssumedCompanyKey">IsNull([AssumedCompanyKey]) ? @[Unknown::AssumedCompanyKey] :[AssumedCompanyKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- AssumedProposalKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP AssumedProposalKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT
+    p.ProposalKey AS AssumedProposalKey
+,   p.ProposalId AS ProposalId
+,   p.QuoteBandId AS QuoteBandId
+FROM 
+    CommonDim.DimProposal p;
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="ProposalId" TargetColumn="ProposalId" />
+                                        <Column SourceColumn="QuoteBandId" TargetColumn="QuoteBandId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="AssumedProposalKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER AssumedProposalKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int16" Name="AssumedProposalKey">IsNull([AssumedProposalKey]) ? @[Unknown::AssumedProposalKey] :[AssumedProposalKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- AssumedQuoteKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP AssumedQuoteKey" NoMatchBehavior="IgnoreFailure">
+                                    <Annotations>
+                                        <Annotation AnnotationType="Description">This is generating duplicate cache errors.  Warning: The component "LKP AssumedQuoteKey" (264) encountered duplicate reference key values when caching reference data. This error occurs in Full Cache mode only. Either remove the duplicate key values, or change the cache mode to PARTIAL or NO_CACHE.</Annotation>
+                                    </Annotations>
+                                    <DirectInput>SELECT
+    q.QuoteKey AS AssumedQuoteKey
+,   q.QuoteBandId AS QuoteBandId
+FROM 
+    CommonDim.DimQuote q;
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="QuoteBandId" TargetColumn="QuoteBandId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="AssumedQuoteKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER AssumedQuoteKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="AssumedQuoteKey">IsNull([AssumedQuoteKey]) ? @[Unknown::AssumedQuoteKey] :[AssumedQuoteKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- AssumedTreatyKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP AssumedTreatyKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT
+    AssumedTreatyKey = t.TreatyKey
+,   t.TreatyId
+FROM 
+    CommonDim.DimTreaty t;
+
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="TreatyId" TargetColumn="TreatyId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="AssumedTreatyKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER AssumedTreatyKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="AssumedTreatyKey">IsNull([AssumedTreatyKey]) ? @[Unknown::AssumedTreatyKey] :[AssumedTreatyKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- CessionCategoryKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP CessionCategoryKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT
+    CessionCategoryKey = C.CessionCategoryKey
+,   CessionCategoryTypeId = C.CessionCategoryTypeId
+,   CessionStatusId = C.CessionStatusId
+,   HowCededId = C.HowCededId
+,   IsConversion = C.IsConversion
+,   LineOfBusinessId = C.LineOfBusinessId
+,   ReinsuranceTypeId = C.ReinsuranceTypeId
+,   TerminationReasonTypeId = C.TerminationReasonTypeId
+FROM 
+    CommonDim.DimCessionCategory C
+WHERE
+    c.BenefitRiderTypeId = '32799DC4-1B8E-4854-8F65-5D012E74F737'
+    AND c.RenewabilityTypeId = '00000000-0000-0000-0000-000000000001';
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="CessionCategoryTypeId" TargetColumn="CessionCategoryTypeId" />
+                                        <Column SourceColumn="CessionStatusId" TargetColumn="CessionStatusId" />
+                                        <Column SourceColumn="HowCededId" TargetColumn="HowCededId" />
+                                        <Column SourceColumn="IsConversion" TargetColumn="IsConversion" />
+                                        <Column SourceColumn="LineOfBusinessId" TargetColumn="LineOfBusinessId" />
+                                        <Column SourceColumn="ReinsuranceTypeId" TargetColumn="ReinsuranceTypeId" />
+                                        <Column SourceColumn="TerminationReasonTypeId" TargetColumn="TerminationReasonTypeId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="CessionCategoryKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER CessionCategoryKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="CessionCategoryKey">IsNull([CessionCategoryKey]) ? @[Unknown::CessionCategoryKey] :[CessionCategoryKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- CessionKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP CessionKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT
+    CessionKey = c.CessionKey
+,   CessionId = c.CessionId
+FROM 
+    CommonDim.DimCession c;
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="CessionId" TargetColumn="CessionId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="CessionKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER CessionKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="CessionKey">IsNull([CessionKey]) ? @[Unknown::CessionKey] :[CessionKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- RetroKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP RetroKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT
+    RetroKey = d.RetroKey
+,   RetentionStackId = d.RetentionStackId
+FROM 
+    CommonDim.DimRetro d
+WHERE
+    d.ParticipantCompanyId = '00000000-0000-0000-0000-000000000001'
+    AND d.RetroPoolId = '00000000-0000-0000-0000-000000000001'
+    AND d.SplitCategoryId = '00000000-0000-0000-0000-000000000001'
+    AND d.SplitTypeId = '00000000-0000-0000-0000-000000000001';
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="RetentionStackId" TargetColumn="RetentionStackId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="RetroKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER RetroKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="RetroKey">IsNull([RetroKey]) ? @[Unknown::RetroKey] :[RetroKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- PolicyAgeDurationKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP PolicyDurationKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT 
+    d.AgeDurationKey
+,   d.AgeNumber
+,   d.DurationNumber
+FROM 
+    CommonDim.DimAgeDuration d;
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="InsuredIssueAge" TargetColumn="AgeNumber" />
+                                        <Column SourceColumn="PolicyDuration" TargetColumn="DurationNumber" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="AgeDurationKey" TargetColumn="PolicyAgeDurationKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER PolicyAgeDurationKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="PolicyAgeDurationKey">IsNull([PolicyAgeDurationKey]) ? @[Unknown::PolicyAgeDurationKey] :[PolicyAgeDurationKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- ReinsuranceDurationKey -->
+                                <Lookup OleDbConnectionName="DatamartStage" Name="LKP ReinsuranceDurationKey" NoMatchBehavior="IgnoreFailure">
+                                    <DirectInput>SELECT 
+    d.AgeDurationKey
+,   d.DurationNumber
+FROM 
+    CommonDim.DimAgeDuration d
+WHERE
+    d.Age = 'N/A';
+</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="ReinsuranceDuration" TargetColumn="DurationNumber" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="AgeDurationKey" TargetColumn="ReinsuranceDurationKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER ReinsuranceDurationKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="ReinsuranceDurationKey">IsNull([ReinsuranceDurationKey]) ? @[Unknown::ReinsuranceDurationKey] :[ReinsuranceDurationKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- Date key lookups -->
+                                <Lookup CacheConnectionName="CCM_DimDate" Name="LKP CessionCancelDateKey" NoMatchBehavior="IgnoreFailure" >
+                                    <Inputs>
+                                        <Column SourceColumn="CessionCancelDate" TargetColumn="FullDatetime" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="DateKey" TargetColumn="CessionCancelDateKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER CessionCancelDateKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="CessionCancelDateKey">IsNull([CessionCancelDateKey]) ? @[Unknown::CessionCancelDateKey] :[CessionCancelDateKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <Lookup CacheConnectionName="CCM_DimDate" Name="LKP OriginalIssueDateKey" NoMatchBehavior="IgnoreFailure" >
+                                    <Inputs>
+                                        <Column SourceColumn="OriginalIssueDate" TargetColumn="FullDatetime" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="DateKey" TargetColumn="OriginalIssueDateKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER OriginalIssueDateKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="OriginalIssueDateKey">IsNull([OriginalIssueDateKey]) ? @[Unknown::OriginalIssueDateKey] :[OriginalIssueDateKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <Lookup CacheConnectionName="CCM_DimDate" Name="LKP PaidToDateKey" NoMatchBehavior="IgnoreFailure" >
+                                    <Inputs>
+                                        <Column SourceColumn="PaidToDate" TargetColumn="FullDatetime" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="DateKey" TargetColumn="PaidToDateKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER PaidToDateKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="PaidToDateKey">IsNull([PaidToDateKey]) ? @[Unknown::PaidToDateKey] :[PaidToDateKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <Lookup CacheConnectionName="CCM_DimDate" Name="LKP ReinsuranceEffectiveDateKey" NoMatchBehavior="IgnoreFailure" >
+                                    <Inputs>
+                                        <Column SourceColumn="ReinsuranceEffectiveDate" TargetColumn="FullDatetime" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="DateKey" TargetColumn="ReinsuranceEffectiveDateKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER ReinsuranceEffectiveDateKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="ReinsuranceEffectiveDateKey">IsNull([ReinsuranceEffectiveDateKey]) ? @[Unknown::ReinsuranceEffectiveDateKey] :[ReinsuranceEffectiveDateKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <Lookup CacheConnectionName="CCM_DimDate" Name="LKP PolicyDateKey" NoMatchBehavior="IgnoreFailure" >
+                                    <Inputs>
+                                        <Column SourceColumn="PolicyDate" TargetColumn="FullDatetime" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="DateKey" TargetColumn="PolicyDateKey" />
+                                    </Outputs>
+                                </Lookup>
+                                <DerivedColumns Name="DER PolicyDateKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="PolicyDateKey">IsNull([PolicyDateKey]) ? @[Unknown::PolicyDateKey] :[PolicyDateKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- 
+                                    ResidenceLocationKey 
+                                -->
+                                <ConditionalSplit Name="CSPL ResidenceLocationKey">
+                                    <OutputPaths>
+                                        <OutputPath Name="State" SsisName="YYYY">
+                                            <Expression>(DT_WSTR, 38)[ResidenceStateId] != "{00000000-0000-0000-0000-000000000000}"</Expression>
+                                        </OutputPath>
+                                        <OutputPath Name="Country">
+                                            <Expression>(DT_WSTR, 38)[ResidenceCountryId] != "{00000000-0000-0000-0000-000000000000}"</Expression>
+                                        </OutputPath>
+                                    </OutputPaths>
+                                </ConditionalSplit>
+                                
+                                <Lookup Name="LKP ResidenceLocationKey State" NoMatchBehavior="IgnoreFailure" OleDbConnectionName="DatamartStage">
+                                    <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL ResidenceLocationKey.State" />
+                                    <DirectInput>SELECT 
+    ResidenceLocationKey = d.LocationKey
+,   ResidenceStateId = d.StateId
+FROM 
+    CommonDim.DimLocation d
+WHERE
+    d.StateId != '00000000-0000-0000-0000-000000000000';</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="ResidenceStateId" TargetColumn="ResidenceStateId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="ResidenceLocationKey" TargetColumn="ResidenceLocationKey" />
+                                    </Outputs>
+                                </Lookup>
+                                
+                                <Lookup Name="LKP ResidenceLocationKey Country" NoMatchBehavior="IgnoreFailure" OleDbConnectionName="DatamartStage">
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL ResidenceLocationKey.Country" />
+                                    <DirectInput>SELECT 
+    ResidenceLocationKey = d.LocationKey
+,   ResidenceCountryId = d.CountryId
+FROM 
+    CommonDim.DimLocation d
+WHERE
+    d.CountryId != '00000000-0000-0000-0000-000000000000';</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="ResidenceCountryId" TargetColumn="ResidenceCountryId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="ResidenceLocationKey" TargetColumn="ResidenceLocationKey" />
+                                    </Outputs>
+                                </Lookup>
+
+                                <UnionAll Name="ALL ResidenceLocationKey">
+                                    <InputPaths>
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.LKP ResidenceLocationKey State.Match" />
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.LKP ResidenceLocationKey Country.Match" />
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL ResidenceLocationKey.Default" />
+                                    </InputPaths>
+                                </UnionAll>
+                                
+                                <!-- Null ResidenceLocationKey -->
+                                <DerivedColumns Name="DER ResidenceLocationKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="ResidenceLocationKey">IsNull([ResidenceLocationKey]) ? @[Unknown::ResidenceLocationKey] :[ResidenceLocationKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>     
+                                <!--
+                                    IssuedLocationKey
+                                -->
+                                                                <ConditionalSplit Name="CSPL IssuedLocationKey">
+                                    <OutputPaths>
+                                        <OutputPath Name="State" SsisName="YYYY">
+                                            <Expression>(DT_WSTR, 38)[IssuedStateId] != "{00000000-0000-0000-0000-000000000000}"</Expression>
+                                        </OutputPath>
+                                        <OutputPath Name="Country">
+                                            <Expression>(DT_WSTR, 38)[IssuedCountryId] != "{00000000-0000-0000-0000-000000000000}"</Expression>
+                                        </OutputPath>
+                                    </OutputPaths>
+                                </ConditionalSplit>
+                                
+                                <Lookup Name="LKP IssuedLocationKey State" NoMatchBehavior="IgnoreFailure" OleDbConnectionName="DatamartStage">
+                                    <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL IssuedLocationKey.State" />
+                                    <DirectInput>SELECT 
+    IssuedLocationKey = d.LocationKey
+,   IssuedStateId = d.StateId
+FROM 
+    CommonDim.DimLocation d
+WHERE
+    d.StateId != '00000000-0000-0000-0000-000000000000';</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="IssuedStateId" TargetColumn="IssuedStateId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="IssuedLocationKey" TargetColumn="IssuedLocationKey" />
+                                    </Outputs>
+                                </Lookup>
+                                
+                                <Lookup Name="LKP IssuedLocationKey Country" NoMatchBehavior="IgnoreFailure" OleDbConnectionName="DatamartStage">
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL IssuedLocationKey.Country" />
+                                    <DirectInput>SELECT 
+    IssuedLocationKey = d.LocationKey
+,   IssuedCountryId = d.CountryId
+FROM 
+    CommonDim.DimLocation d
+WHERE
+    d.CountryId != '00000000-0000-0000-0000-000000000000';</DirectInput>
+                                    <Inputs>
+                                        <Column SourceColumn="IssuedCountryId" TargetColumn="IssuedCountryId" />
+                                    </Inputs>
+                                    <Outputs>
+                                        <Column SourceColumn="IssuedLocationKey" TargetColumn="IssuedLocationKey" />
+                                    </Outputs>
+                                </Lookup>
+
+                                <UnionAll Name="ALL IssuedLocationKey">
+                                    <InputPaths>
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.LKP IssuedLocationKey State.Match" />
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.LKP IssuedLocationKey Country.Match" />
+                                        <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL IssuedLocationKey.Default" />
+                                    </InputPaths>
+                                </UnionAll>
+                                
+                                <!-- Null IssuedLocationKey -->
+                                <DerivedColumns Name="DER IssuedLocationKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="IssuedLocationKey">IsNull([IssuedLocationKey]) ? @[Unknown::IssuedLocationKey] :[IssuedLocationKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+
+                                <!--
+                                    PricingVariableKey
+                                -->
+								<Lookup Name="LKP PricingVariableKey" OleDbConnectionName="DatamartStage" CacheMode="Partial" CacheSize32="2048" CacheSize64="2048" NoMatchCachePercentage="20" NoMatchBehavior="IgnoreFailure">
+									<Outputs>
+										<Column SourceColumn="PricingVariableKey" TargetColumn="PricingVariableKey" />
+                                    </Outputs>
+									<Inputs>
+										<Column SourceColumn="GeneraliMortalityTable" TargetColumn="GeneraliMortalityTable" />
+										<Column SourceColumn="HasFlatExtra" TargetColumn="HasFlatExtra" />
+										<Column SourceColumn="PreferredLevelTypeId" TargetColumn="PreferredLevelTypeId" />
+										<Column SourceColumn="RiskClassId" TargetColumn="RiskClassId" />
+										<Column SourceColumn="SexId" TargetColumn="SexId" />
+										<Column SourceColumn="TobaccoTypeId" TargetColumn="TobaccoTypeId" />
+										<Column SourceColumn="BaseFaceAmount" TargetColumn="FaceAmountBandLowValue" />
+                                    </Inputs>
+									<DirectInput>SELECT
+    PricingVariableKey = d.PricingVariableKey
+,   CONVERT(TINYINT, d.GeneraliMortalityTable) AS GeneraliMortalityTable
+,   HasFlatExtra = d.HasFlatExtra
+,   RiskClassId = d.RiskClassId
+,   SexId = d.SexId
+,   TobaccoTypeId = d.TobaccoTypeId
+,   PreferredLevelTypeId = d.PreferredLevelTypeId
+    --AND f.BaseFaceAmount BETWEEN 
+,   d.FaceAmountBandLowValue 
+,   d.FaceAmountBandHighValue
+
+FROM 
+    CommonDim.DimPricingVariable d
+WHERE
+    d.GeneraliMortalityTable &lt;&gt; 'U'
+    AND d.FaceAmountBand &lt;&gt; 'Unknown'
+    AND d.ArcValRiskClassPosition = ''
+    AND d.NonTobaccoRiskClassPosition = ''
+    AND d.RiskClassPosition = ''
+    AND d.TobaccoRiskClassPosition = ''</DirectInput>
+<ParameterizedQuery>select * from (SELECT
+    PricingVariableKey = d.PricingVariableKey
+,   CONVERT(TINYINT, d.GeneraliMortalityTable) AS GeneraliMortalityTable
+,   HasFlatExtra = d.HasFlatExtra
+,   RiskClassId = d.RiskClassId
+,   SexId = d.SexId
+,   TobaccoTypeId = d.TobaccoTypeId
+,   PreferredLevelTypeId = d.PreferredLevelTypeId
+,   d.FaceAmountBandLowValue 
+,   d.FaceAmountBandHighValue
+
+FROM 
+    CommonDim.DimPricingVariable d
+WHERE
+    d.GeneraliMortalityTable &lt;&gt; 'U'
+    AND d.FaceAmountBand &lt;&gt; 'Unknown'
+    AND d.ArcValRiskClassPosition = ''
+    AND d.NonTobaccoRiskClassPosition = ''
+    AND d.RiskClassPosition = ''
+    AND d.TobaccoRiskClassPosition = '') [refTable]
+where [refTable].[GeneraliMortalityTable] = ? and [refTable].[HasFlatExtra] = ? and [refTable].[PreferredLevelTypeId] = ? and [refTable].[RiskClassId] = ? and [refTable].[SexId] = ? and [refTable].[TobaccoTypeId] = ? and ? BETWEEN [refTable].[FaceAmountBandLowValue] AND [refTable].[FaceAmountBandHighValue]</ParameterizedQuery>
+								<Parameters>
+									<Parameter SourceColumn="GeneraliMortalityTable" TargetColumn="GeneraliMortalityTable" />
+									<Parameter SourceColumn="HasFlatExtra" TargetColumn="HasFlatExtra" />
+									<Parameter SourceColumn="PreferredLevelTypeId" TargetColumn="PreferredLevelTypeId" />
+									<Parameter SourceColumn="RiskClassId" TargetColumn="RiskClassId" />
+									<Parameter SourceColumn="SexId" TargetColumn="SexId" />
+									<Parameter SourceColumn="TobaccoTypeId" TargetColumn="TobaccoTypeId" />
+									<Parameter SourceColumn="TobaccoTypeId" TargetColumn="TobaccoTypeId" />
+								</Parameters>									
+                                </Lookup>
+
+								<!-- Null PricingVariableKey -->
+                                <DerivedColumns Name="DER PricingVariableKey">
+                                    <Columns>
+                                        <Column ReplaceExisting="true" DataType="Int32" Name="PricingVariableKey">IsNull([PricingVariableKey]) ? @[Unknown::PricingVariableKey] :[PricingVariableKey]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+								
+                                <!-- Audit keys -->
+                                <DerivedColumns Name="DER Audit keys">
+                                    <Columns>
+                                        <Column Name="InsertAuditKey" DataType="Int32">@[User::AuditKeyNormal]</Column>
+                                        <Column Name="UpdateAuditKey" DataType="Int32">@[User::AuditUpdateDefault]</Column>
+                                    </Columns>
+                                </DerivedColumns>
+                                <!-- 
+                                    Separate gold from the dross
+                                -->
+                                <ConditionalSplit Name="CSPL Filter invalid keys">
+                                    <OutputPaths>
+                                        <OutputPath Name="Invalid Surrogate Key">
+                                            <Expression>AssumedCompanyKey &lt; 1 || AssumedProposalKey &lt; 1 || AssumedQuoteKey &lt; 1 || AssumedTreatyKey &lt; 1 || CessionKey &lt; 1 || CessionCancelDateKey &lt; 1 || CessionCategoryKey &lt; 1 || IssuedLocationKey &lt; 1 || OriginalIssueDateKey &lt; 1 || PaidToDateKey &lt; 1 || PolicyAgeDurationKey &lt; 1 || PolicyDateKey &lt; 1 || PricingVariableKey &lt; 1 || ReinsuranceDurationKey &lt; 1 || ReinsuranceEffectiveDateKey &lt; 1 || ResidenceLocationKey &lt; 1 || RetroKey &lt; 1</Expression>
+                                        </OutputPath>
+                                    </OutputPaths>
+                                </ConditionalSplit>
+                                <!-- 
+                                    Write to problem destination (invalid key == problem)
+                                -->
+								<RowCount Name="CNT Error InvalidKey" VariableName="CessionFactLoad.User.RowCount_Error_2" >
+                                    <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL Filter invalid keys.Invalid Surrogate Key" />
+								</RowCount>
+                                <!--
+                                <OleDbDestination Name="OLE_DST Cession_CessionFactRawProblem" ConnectionName="DatamartStage">
+                                    <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL Filter invalid keys.Invalid Surrogate Key" />
+                                    <TableFromVariableOutput VariableName="CessionFactLoad.User.QualifiedTableNameProblem" />
+                                </OleDbDestination>
+                        -->
+                                <!-- Write to destination -->
+                                <OleDbDestination Name="OLE_DST Cession_CessionFact" ConnectionName="EverestDatamart">
+                                    <InputPath OutputPathName="CessionFactLoad.SEQC Do work.DFT Load DW.CSPL Filter invalid keys.Default" />
+                                    <TableFromVariableOutput VariableName="CessionFactLoad.User.QualifiedTableName" />
+                                </OleDbDestination>
+                            </Transformations>
+                        </Dataflow>
+                        <ExecuteSQL Name="SQL Enable Indexes" ConnectionName="EverestDatamart">
+                            <VariableInput VariableName="CessionFactLoad.User.QueryRebuildIndexes" />
+                        </ExecuteSQL>
+                        <ExecuteSQL Name="SQL Update Statistics" ConnectionName="EverestDatamart">
+                            <VariableInput VariableName="CessionFactLoad.User.QueryUpdateStatistics" />
+                        </ExecuteSQL>
+                    </Tasks>
+                </Container>
+                <ExecutePackage Name="EPT MaintainDimAuditFinalize" ForcedExecutionValueDataType="Empty" PackagePassword="">
+                    <SqlServer ConnectionName="DatamartStage" PackagePath="\DatamartPackages\Auditing\MaintainDimAuditFinalize" />
+                </ExecutePackage>
+            </Tasks>
+            <PackageConfigurations>
+                <PackageConfiguration Name="SSIS Config for Connect String">
+                    <ExternalFileInput ExternalFilePath="C:\inetpub\wwwroot\SSIS_Config\SSISConfigDb.dtsConfig" FileUsageType="ExistingFile" RelativePath="false" />
+                </PackageConfiguration>
+                <PackageConfiguration Name="Datamart Maintenance Connect String for DataMartStage" ConnectionName="SSIS Configuration">
+                    <ExternalTableInput Table="[dbo].[Package_Config]" />
+                    <ConfigurationValues>
+                        <ConfigurationValue DataType="String" PropertyPath="\Package.Connections[DatamartStage].Properties[ConnectionString]" Name="Datamart Maintenance Connect String for DataMartStage" Value="Data Source=GENDATAT2\SQLMARTD01;Initial Catalog=ODSDEV01_DataMartStage;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+                    </ConfigurationValues>
+                </PackageConfiguration>
+                <PackageConfiguration Name="Datamart Maintenance Connect String for Everest" ConnectionName="SSIS Configuration">
+                    <ExternalTableInput Table="[dbo].[Package_Config]" />
+                    <ConfigurationValues>
+                        <ConfigurationValue DataType="String" Name="Datamart Maintenance Connect String for Everest" PropertyPath="\Package.Connections[Everest].Properties[ConnectionString]" Value="Data Source=GENSQLDEV1\SQLDEV01;Initial Catalog=Everest_QAST;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+                    </ConfigurationValues>
+                </PackageConfiguration>
+                <PackageConfiguration Name="Datamart Maintenance Connect String for EverestDatamart" ConnectionName="SSIS Configuration">
+                    <ExternalTableInput Table="[dbo].[Package_Config]" />
+                    <ConfigurationValues>
+                        <ConfigurationValue DataType="String" Name="Datamart Maintenance Connect String for EverestDatamart" PropertyPath="\Package.Connections[EverestDatamart].Properties[ConnectionString]" Value="Data Source=GENDATAT2\SQLMARTD01;Initial Catalog=ODSDEV01_DataMart;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+                    </ConfigurationValues>
+                </PackageConfiguration>
+                <!--
+                <PackageConfiguration Name="ConfigurationDatamart Maintenance Connect String for SMTP Connection Manager" ConnectionName="SSIS Configuration">
+                    <FileInput />
+                </PackageConfiguration>
+                <PackageConfiguration Name="ConfigurationEmailAddressBIFromLine" ConnectionName="SSIS Configuration">
+                    <FileInput />
+                </PackageConfiguration>
+                <PackageConfiguration Name="ConfigurationEmailAddressBIDimensionMaintenance" ConnectionName="SSIS Configuration">
+                    <FileInput />
+                </PackageConfiguration>
+			-->
+            </PackageConfigurations>
+            <Connections>
+                <Connection ConnectionName="DatamartStage" />
+                <Connection ConnectionName="Everest" />
+                <Connection ConnectionName="EverestDatamart" />
+                <Connection ConnectionName="SSIS Configuration" />
+            </Connections>
+            <LogProviders>
+                <SqlServerLogProvider ConnectionName="SSIS Configuration" Name="SSIS log provider for SQL Server">
+					<Annotations>
+						<Annotation AnnotationType="Description">Writes log entries for events to a SQL Server database</Annotation>
+                    </Annotations>
+                </SqlServerLogProvider>
+            </LogProviders>
+            <LogEvents>
+                <LogEvent EventName="OnError" />
+                <LogEvent EventName="OnWarning" />
+                <LogEvent EventName="OnPreValidate" />
+                <LogEvent EventName="OnPostExecute" />
+            </LogEvents>
+        </Package>
+    </Packages>
+</Biml>

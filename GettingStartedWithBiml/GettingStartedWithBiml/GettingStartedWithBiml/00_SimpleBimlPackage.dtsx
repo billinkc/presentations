@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="04/13/2019 18:13:49" DTS:CreationName="SSIS.Package.3" DTS:CreatorComputerName="BUCKLAND" DTS:CreatorName="bfellows" DTS:DTSID="{EC76A30F-C62C-467E-BB9F-2EEAED0B6EED}" DTS:ExecutableType="SSIS.Package.3" DTS:LastModifiedProductVersion="" DTS:LocaleID="1033" DTS:ObjectName="00_SimpleBimlPackage" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{F2190DD3-5CA3-4FC0-8672-3D3215DD2827}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">6</DTS:Property>
+</DTS:Executable>

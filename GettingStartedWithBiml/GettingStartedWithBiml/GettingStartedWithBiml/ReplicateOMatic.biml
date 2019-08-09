@@ -1,0 +1,69 @@
+<#@ template language="C#" hostspecific="true" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.IO" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+<!--
+<#
+    string connectionStringSource = @"Server=localhost\dev2012;Initial Catalog=AdventureWorks2012;Integrated Security=SSPI;Provider=SQLNCLI11.1";
+    string connectionStringDestination = @"Server=localhost\dev2012;Initial Catalog=AdventureWorks2012Replicated;Integrated Security=SSPI;Provider=SQLNCLI11.1";
+
+    string SrcTableQuery =     @"
+SELECT
+    DEST.SchemaName
+,   DEST.TableName
+FROM
+    (
+        SELECT
+            S.name AS SchemaName
+        ,   T.name AS TableName
+        FROM
+            sys.schemas AS S
+            INNER JOIN sys.tables AS T
+            ON T.schema_id = S.schema_id
+    ) DEST
+    INNER JOIN
+    (
+        SELECT
+            S.name AS SchemaName
+        ,   T.name AS TableName
+        FROM
+            AdventureWorks2012.sys.schemas AS S
+            INNER JOIN AdventureWorks2012.sys.tables AS T
+            ON T.schema_id = S.schema_id
+    ) SRC
+        ON SRC.SchemaName = DEST.SchemaName
+        AND SRC.TableName = DEST.TableName
+WHERE
+    SRC.TableName NOT IN ('ProductModel', 'Store')
+
+;
+
+";
+
+    DataTable dt = null;
+    dt = ExternalDataAccess.GetDataTable(connectionStringDestination, SrcTableQuery);
+#>    
+-->
+    <Connections>
+        <OleDbConnection
+            Name="SRC"
+            CreateInProject="false"
+            ConnectionString="<#=connectionStringSource#>"
+            RetainSameConnection="false">
+        </OleDbConnection>
+        <OleDbConnection
+            Name="DST"
+            CreateInProject="false"
+            ConnectionString="<#=connectionStringDestination#>"
+            RetainSameConnection="false">
+        </OleDbConnection>
+    </Connections>
+
+    <Packages>
+        <# foreach (DataRow dr in dt.Rows) { #>
+            <#=CallBimlScript("inc_Package.biml", dr[0].ToString(), dr[1].ToString())#>
+        <# } #>
+    </Packages>
+</Biml>
+    

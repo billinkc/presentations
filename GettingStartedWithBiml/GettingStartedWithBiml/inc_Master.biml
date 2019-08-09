@@ -1,0 +1,37 @@
+<#@ template language="C#" tier="2" #>
+<#@ property name="dt" type="System.Data.DataTable" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.IO" #>
+
+            <Package ConstraintMode="Linear"
+                Name="Master package"
+
+            >
+
+<#
+
+string schema = string.Empty; // dr[0].ToString()
+
+string table = string.Empty;
+
+//  dr[1].ToString()
+
+#>
+            <Tasks>
+
+        <# foreach (DataRow dr in dt.Rows) { #>
+<#
+schema = dr[0].ToString();
+table = dr[1].ToString();
+#>
+                <ExecutePackage Name="EPT <#=schema#>_<#=table#>">
+                    <ExternalProjectPackage Package="<#=schema#>_<#=table#>.dtsx" />
+                </ExecutePackage>
+
+        <# } #>
+
+
+
+            </Tasks>
+            </Package>

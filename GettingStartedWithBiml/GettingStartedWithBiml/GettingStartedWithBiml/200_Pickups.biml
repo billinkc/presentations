@@ -1,0 +1,193 @@
+<#@ template language="C#" tier="2" #>
+<#@ property name="schema" type="String" #>
+<#@ property name="table" type="String" #>
+<#@ property name="FFName" type="String" #>
+<#@ property name="FileMask" type="String" #>
+ 
+		<!-- Change 02 -->
+		<Package Name="<#=schema#>_<#=table#>" ConstraintMode="Linear" ProtectionLevel="DontSaveSensitive">
+			<Connections >
+				<!-- Change 03 -->
+				<Connection ConnectionName="<#=FFName#>">
+					<Expressions>
+						<Expression PropertyName="<#=FFName#>.ConnectionString">@[User::CurrentFileName]</Expression>
+					</Expressions>
+				</Connection>
+				<Connection ConnectionName="Audit" />
+				<Connection ConnectionName="TypeMoreClickLess" />
+			</Connections>
+			<Parameters>
+				<Parameter Name="ParentPackageID" DataType="String">00000000-0000-0000-0000-000000000000</Parameter>
+			</Parameters>
+			<Variables>
+				<Variable Name="CurrentFileName" DataType="String">C:\ssisdata\Operations\Input\Pickup Report Pickups.txt</Variable>
+				<Variable Name="SchemaName" DataType="String">RAW</Variable>
+				<!-- Change 04 -->
+				<Variable Name="TableName" DataType="String"><#=table#></Variable>
+				<!-- Change 05 -->
+				<Variable Name="FileMask" DataType="String"><#=FileMask#></Variable>
+				<Variable Name="SubjectArea" DataType="String">Operations</Variable>
+				<Variable Name="ServerExecutionID" Namespace="System" ReadOnly="true" RaiseChangedEvent="false" IncludeInDebugDump="Include" DataType="Int64">0</Variable>
+				
+				<Variable Name="QualifiedTableSchema"
+						  DataType="String"
+						  EvaluateAsExpression="true">"[" +  @[User::SchemaName] + "].[" +  @[User::TableName] + "]"</Variable>
+				<Variable Name="QueryAuditStart" DataType="String" EvaluateAsExpression="true">"EXECUTE [AUD].[PackageControlStart] @PackageName = ?, @PackageId = ?, @ParentPackageId = ?, @ExecutionId = ?, @StartTime = ?;"</Variable>
+				<Variable Name="QueryAuditUpdate" DataType="String" EvaluateAsExpression="true">"EXECUTE [AUD].[PackageControlStop] @PackageId = ?, @ExecutionId = ?, @InsertRowQuantity = ?, @UpdateRowQuantity = ?, @DeleteRowQuantity = ?, @ErrorRowQuantity = ?;"</Variable>
+				<Variable Name="QuerySource" DataType="String">SELECT 1 AS foo</Variable>
+				<Variable Name="QueryTruncate" DataType="String" EvaluateAsExpression="true">"TRUNCATE TABLE TypeMoreClickLess." + @[User::SchemaName] + "." + @[User::TableName] + ";"</Variable>
+				<Variable Name="RowCountDelete" DataType="Int32">0</Variable>
+				<Variable Name="RowCountError" DataType="Int32">0</Variable>
+				<Variable Name="RowCountInsert" DataType="Int32">0</Variable>
+				<Variable Name="RowCountUpdate" DataType="Int32">0</Variable>
+
+			<Variable Name="FolderInput"
+						  DataType="String"
+						  EvaluateAsExpression="true">@[$Project::FolderBase] +  @[User::SubjectArea] + "\\Input"</Variable>
+				<Variable Name="FolderArchive"
+						  DataType="String"
+						  EvaluateAsExpression="true">@[$Project::FolderBase] +  @[User::SubjectArea] + "\\Archive"</Variable>
+				<Variable Name="FolderOutput"
+						  DataType="String"
+						  EvaluateAsExpression="true">@[$Project::FolderBase] +  @[User::SubjectArea] + "\\Output"</Variable>
+			</Variables>
+			<Tasks>
+				<ExecuteSQL Name="SQL Begin Audit"
+							ConnectionName="Audit">
+					<VariableInput VariableName="User.QueryAuditStart"></VariableInput>
+					<Parameters>
+						<Parameter
+							Name="0"
+							DataType="String"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.PackageName"
+						/>
+						<Parameter
+							Name="1"
+							DataType="Guid"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.PackageID"
+						/>
+						<Parameter
+							Name="2"
+							DataType="Guid"
+							Direction="Input"
+							Length="-1"
+							VariableName="<#=schema#>_<#=table#>.ParentPackageID"
+						/>
+						<Parameter
+							Name="3"
+							DataType="Int64"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.ServerExecutionID"
+						/>
+						<Parameter
+							Name="4"
+							DataType="Date"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.StartTime"
+						/>
+
+					</Parameters>
+				</ExecuteSQL>
+				<ExecuteSQL Name="SQL Truncate Table"
+							ConnectionName="TypeMoreClickLess">
+					<VariableInput VariableName="User.QueryTruncate"></VariableInput>
+				</ExecuteSQL>
+				<ForEachFileLoop Name="FELC Stuff"
+					FileSpecification="*.txt"
+					ProcessSubfolders="true"
+					RetrieveFileNameFormat="FullyQualified"
+					Folder="C:\"
+					ConstraintMode="Linear"
+				>
+					<Expressions>
+						<Expression PropertyName="Directory">@[User::FolderInput]</Expression>
+						<Expression PropertyName="FileSpec">@[User::FileMask]</Expression>
+					</Expressions>
+					<VariableMappings>
+						<VariableMapping 
+							Name="0" 
+							VariableName="User.CurrentFileName"
+						/>
+					</VariableMappings>
+					<Tasks>
+						<Dataflow Name="DFT X" >
+							<Transformations>
+								<FlatFileSource 
+									Name="OLE_SRC Pickup" 
+									ConnectionName="FF Pickup" 
+									RetainNulls="true">
+								</FlatFileSource>
+								<RowCount Name="CNT Source" VariableName="User.RowCountInsert"></RowCount>
+								<OleDbDestination
+									Name="OLE_DST RAW_PICKUP"
+									ConnectionName="TypeMoreClickLess"
+									KeepIdentity="true"
+									TableLock="true"
+									UseFastLoadIfAvailable="true"
+									KeepNulls="true"
+								>
+									<TableFromVariableOutput VariableName="User.QualifiedTableSchema"/>
+								</OleDbDestination>
+							</Transformations>
+							<Expressions>
+								<Expression PropertyName="Name">"DFT Load " + @[User::TableName]</Expression>
+							</Expressions>
+						</Dataflow>
+						<FileSystem
+							Name="FST Archive File"
+							OverwriteDestination="true"
+							Operation="MoveFile"
+						>
+							<VariableOutput VariableName="User.FolderArchive"></VariableOutput>
+							<VariableInput VariableName="User.CurrentFileName"></VariableInput>
+						</FileSystem>
+					</Tasks>
+				</ForEachFileLoop>
+				<ExecuteSQL Name="SQL Close Audit"
+							ConnectionName="Audit">
+					<VariableInput VariableName="User.QueryAuditUpdate"></VariableInput>
+					<Parameters>
+						<Parameter
+							Name="0"
+							DataType="Guid"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.PackageID"
+						/>
+						<Parameter
+							Name="1"
+							DataType="Int64"
+							Direction="Input"
+							Length="-1"
+							VariableName="System.ServerExecutionID"
+						/>
+						<Parameter
+							Name="2"
+							DataType="Int32"
+							VariableName="User.RowCountInsert"
+						/>
+						<Parameter
+							Name="3"
+							DataType="Int32"
+							VariableName="User.RowCountUpdate"
+						/>
+						<Parameter
+							Name="4"
+							DataType="Int32"
+							VariableName="User.RowCountDelete"
+						/>
+						<Parameter
+							Name="5"
+							DataType="Int32"
+							VariableName="User.RowCountError"
+						/>
+					</Parameters>
+				</ExecuteSQL>
+			</Tasks>
+		</Package>

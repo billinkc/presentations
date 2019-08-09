@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	<#
+		string _domain = Varigence.Utility.ActiveDirectory.ActiveDirectoryHelper.GetDomain();
+		string awconn = @"Provider=SQLOLEDB;Data Source=localhost\dev2012;Integrated Security=SSPI;Initial Catalog=AdventureWorks2012";
+		
+		
+	#>
+	<# var sourceConnection = (AstDbConnectionNode)RootNode.Connections["CM_Adventureworks"]; #>
+    <# var importedSchema = sourceConnection.ImportDB("", "", ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeColumnDefault | ImportOptions.ExcludeViews); #>
+    <# var tableNamesToImport = ExternalDataAccess.GetDataTable(sourceConnection.ConnectionString, "SELECT T.name AS TableName FROM sys.tables AS T").Rows.OfType<System.Data.DataRow>().Select(r => r[0].ToString()); #>
+
+    <Tables>
+        <# //foreach (var tableNode in importedSchema.TableNodes.Where(item => tableNamesToImport.Contains(item.Name)).OrderBy(item => item.Name)) { #>
+            <!-- Do whatever you were planning to do with your now filtered and sorted list of table nodes -->
+            <# //tableNode.GetBiml() #>
+        <# //} #>
+    </Tables>
+</Biml>

@@ -1,0 +1,10 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Summit2013" SchemaName="CM_TypeMoreClickLess.RAW">
+    <Columns>
+        <Column Name="data_value" DataType="AnsiString" Length="14" />
+        <Column Name="insert_date" DataType="DateTime" />
+    </Columns>
+</Table>
+    </Tables>
+</Biml>

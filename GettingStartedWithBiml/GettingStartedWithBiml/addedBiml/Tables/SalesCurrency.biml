@@ -1,0 +1,25 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SalesCurrency" SchemaName="CM_TypeMoreClickLess.RAW">
+    <Columns>
+        <Column Name="CurrencyCode" DataType="StringFixedLength" Length="3" />
+        <Column Name="CurrencyName" DataType="String" Length="50" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SalesCurrency">
+            <Columns>
+                <Column ColumnName="CurrencyCode" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SalesCurrency" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="CurrencyCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

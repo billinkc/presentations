@@ -1,0 +1,29 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Packages>
+        <Package Name="CurrencyCodePOC" ConstraintMode="Linear">
+			<Connections>
+				<Connection ConnectionName="CM_Adventureworks" />
+				<Connection ConnectionName="CM_TypeMoreClickLess" />
+            </Connections>
+			<Tasks>
+				<Dataflow Name="DFT Load all">
+					<Transformations>
+						<OleDbSource Name="OLE_SRC Sales_Currency" ConnectionName="CM_AdventureWorks">
+							<DirectInput>
+								SELECT SC.CurrencyCode, SC.Name
+								FROM Sales.Currency AS SC;
+							</DirectInput>
+						</OleDbSource>
+						<RowCount Name="CNT New" VariableName="User.RowCountNew" />
+						<OleDbDestination Name="OLE_DST RAW_SalesCurrency" ConnectionName="CM_TypeMoreClickLess" KeepIdentity="false" TableLock="true" UseFastLoadIfAvailable="true" KeepNulls="true">
+							<TableOutput TableName="CM_TypeMoreClickLess.RAW.SalesCurrency">
+								
+                            </TableOutput>
+
+						</OleDbDestination>
+                    </Transformations>
+                </Dataflow>
+            </Tasks>
+        </Package>
+    </Packages>
+</Biml>

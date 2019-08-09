@@ -1,0 +1,47 @@
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	<Connections>
+		<OleDbConnection 
+			ConnectionString="Data Source=localhost\dev2012;Initial Catalog=AdventureWorks2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;"
+			Name="AdventureWorks"/>
+		<OleDbConnection 
+			ConnectionString="Data Source=localhost\dev2012;Initial Catalog=TypeMoreClickLess;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;"
+			Name="TypeMoreClickLessLocal"/>
+	</Connections>
+	<Packages>
+		<Package
+			Name="HelloDataFlow"
+			ConstraintMode="Linear">
+			<Variables>
+				<Variable Name="RowCountNew" DataType="Int32" Namespace="User">0</Variable>
+			</Variables>
+			<Tasks>
+				<Dataflow Name="DFT Basic Dataflow">
+					<Transformations>
+						<OleDbSource Name="OLE_SRC Demo"
+							ConnectionName="AdventureWorks" >
+							<DirectInput>
+								SELECT SC.CurrencyCode, SC.Name
+								FROM Sales.Currency AS SC;
+							</DirectInput>
+						</OleDbSource>
+						<RowCount Name="CNT New"
+							VariableName="User.RowCountNew"/>
+						<OleDbDestination
+							Name="OLE_DST RAW_SalesCurrency"
+							ConnectionName="TypeMoreClickLessLocal"
+							KeepIdentity="false"
+							TableLock="true"
+							UseFastLoadIfAvailable="true"
+							KeepNulls="true"
+						>
+							<ExternalTableOutput Table="[RAW].[SalesCurrency]"/>
+								<Columns>
+									<Column SourceColumn="Name" TargetColumn="CurrencyName" />
+								</Columns>
+						</OleDbDestination>
+					</Transformations>
+				</Dataflow>
+			</Tasks>
+		</Package>
+	</Packages>
+</Biml>

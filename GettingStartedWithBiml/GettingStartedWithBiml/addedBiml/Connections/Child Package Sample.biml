@@ -1,0 +1,5 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Connections>
+        <FlatFileConnection Name="Child Package Sample" FilePath="C:\SSIS\Samples\Child Package Sample.txt" FileFormat="Child Package Sample" />
+    </Connections>
+</Biml>

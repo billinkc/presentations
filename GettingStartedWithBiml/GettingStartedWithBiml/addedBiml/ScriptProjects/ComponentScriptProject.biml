@@ -1,0 +1,131 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <ScriptProjects>
+        <ScriptComponentProject Name="MyName">
+            <Files>
+                <File Path="dts://Scripts/ScriptComponent_d430a830f606432d95b89711bbb9dfdc/ScriptComponent_d430a830f606432d95b89711bbb9dfdc.vsaproj">&lt;VisualStudioProject&gt;
+    &lt;VisualBasic
+        Version = "8.0.50727.1826"
+        MVID = "{00000000-0000-0000-0000-000000000000}"
+        ProjectType = "Local"
+        ProductVersion = "8.0.50727"
+        SchemaVersion = "2.0"
+    &gt;
+        &lt;Build&gt;
+            &lt;Settings
+                DefaultNamespace = "ScriptComponent_d430a830f606432d95b89711bbb9dfdc"
+                OptionCompare = "0"
+                OptionExplicit = "1"
+                OptionStrict = "1"
+                ProjectName = "ScriptComponent_d430a830f606432d95b89711bbb9dfdc"
+                ReferencePath = "C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.TxScript\9.0.242.0__89845dcd8080cc91\;C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.PipelineHost\9.0.242.0__89845dcd8080cc91\;C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.DTSPipelineWrap\9.0.242.0__89845dcd8080cc91\;C:\Windows\assembly\GAC_32\Microsoft.SqlServer.DTSRuntimeWrap\9.0.242.0__89845dcd8080cc91\"
+                TreatWarningsAsErrors = "false"
+                WarningLevel = "1"
+                RootNamespace = "ScriptComponent_d430a830f606432d95b89711bbb9dfdc"
+            &gt;
+                &lt;Config
+                    Name = "Debug"
+                    DefineConstants = ""
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DebugSymbols = "true"
+                    RemoveIntegerChecks = "false"
+                /&gt;
+            &lt;/Settings&gt;
+            &lt;References&gt;
+                &lt;Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                /&gt;
+                &lt;Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.TxScript"
+                    AssemblyName = "Microsoft.SqlServer.TxScript"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.PipelineHost"
+                    AssemblyName = "Microsoft.SqlServer.PipelineHost"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.DTSPipelineWrap"
+                    AssemblyName = "Microsoft.SqlServer.DTSPipelineWrap"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.DTSRuntimeWrap"
+                    AssemblyName = "Microsoft.SqlServer.DTSRuntimeWrap"
+                /&gt;
+            &lt;/References&gt;
+            &lt;Imports&gt;
+                &lt;Import Namespace = "Microsoft.VisualBasic" /&gt;
+            &lt;/Imports&gt;
+        &lt;/Build&gt;
+        &lt;Files&gt;
+            &lt;Include&gt;
+                &lt;File
+                    RelPath = "ScriptMain"
+                    BuildAction = "Compile"
+                    ItemType = "2"
+                /&gt;
+                &lt;File
+                    RelPath = "BufferWrapper"
+                    BuildAction = "Compile"
+                    ItemType = "2"
+                /&gt;
+                &lt;File
+                    RelPath = "ComponentWrapper"
+                    BuildAction = "Compile"
+                    ItemType = "2"
+                /&gt;
+            &lt;/Include&gt;
+        &lt;/Files&gt;
+        &lt;Folders&gt;
+            &lt;Include/&gt;
+        &lt;/Folders&gt;
+    &lt;/VisualBasic&gt;
+&lt;/VisualStudioProject&gt;
+
+</File>
+                <File Path="dts://Scripts/ScriptComponent_d430a830f606432d95b89711bbb9dfdc/ScriptMain.vsaitem">' Microsoft SQL Server Integration Services user script component
+' This is your new script component in Microsoft Visual Basic .NET
+' ScriptMain is the entrypoint class for script components
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Pipeline.Wrapper
+Imports Microsoft.SqlServer.Dts.Runtime.Wrapper
+
+' Script Courtesy of Jamie Thompshon AKA SSIS Junkie
+' http://consultingblogs.emc.com/jamiethomson/archive/2005/08/08/SSIS-Nugget_3A00_-Get-error-descriptions.aspx
+
+Public Class ScriptMain
+    Inherits UserComponent
+
+    Public Overrides Sub Input0_ProcessInputRow(ByVal Row As Input0Buffer)
+
+        'Use the incoming error number as a parameter to GetErrorDescription
+        ' Restrict to 255 characters to prevent truncation errors
+        Row.ErrorDescription = Mid(ComponentMetaData.GetErrorDescription(Row.ErrorCode), 1, 255)
+    End Sub
+
+End Class
+
+</File>
+            </Files>
+            <OutputBuffers>
+                <OutputBuffer Name="Output 0">
+                    <Columns>
+                        <Column Name="ErrorDescription" Length="255" DataType="String" />
+                    </Columns>
+                </OutputBuffer>
+            </OutputBuffers>
+            <InputBuffer Name="Input 0">
+                <Columns>
+                    <Column Name="ErrorCode" />
+                </Columns>
+            </InputBuffer>
+        </ScriptComponentProject>
+    </ScriptProjects>
+</Biml>

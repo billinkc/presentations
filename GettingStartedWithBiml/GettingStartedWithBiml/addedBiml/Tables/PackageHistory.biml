@@ -1,0 +1,19 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="PackageHistory" SchemaName="CM_TypeMoreClickLess.AUD">
+    <Columns>
+        <Column Name="PackageName" DataType="AnsiString" Length="100" />
+        <Column Name="PackageID" DataType="Guid" />
+        <Column Name="ParentPackageID" DataType="Guid" IsNullable="true" />
+        <Column Name="ExecutionID" DataType="Int64" IsNullable="true" />
+        <Column Name="StartTime" DataType="DateTime" />
+        <Column Name="StopTime" DataType="DateTime" IsNullable="true" />
+        <Column Name="InsertRowCount" IsNullable="true" />
+        <Column Name="UpdateRowCount" IsNullable="true" />
+        <Column Name="DeleteRowCount" IsNullable="true" />
+        <Column Name="ErrorRowCount" IsNullable="true" />
+        <Column Name="Duration_s" IsNullable="true" />
+    </Columns>
+</Table>
+    </Tables>
+</Biml>

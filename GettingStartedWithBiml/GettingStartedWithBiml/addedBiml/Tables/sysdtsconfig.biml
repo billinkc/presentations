@@ -1,0 +1,28 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="sysdtsconfig" SchemaName="CM_TypeMoreClickLess.dbo">
+    <Columns>
+        <Column Name="ConfigSK" />
+        <Column Name="ConfigurationFilter" DataType="String" Length="255" />
+        <Column Name="ConfiguredValue" DataType="String" Length="255" IsNullable="true" />
+        <Column Name="PackagePath" DataType="String" Length="255" />
+        <Column Name="ConfiguredValueType" DataType="String" Length="20" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK__sysdtsco__C3BC62EACE2F208A">
+            <Columns>
+                <Column ColumnName="ConfigSK" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK__sysdtsco__C3BC62EACE2F208A" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ConfigSK" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

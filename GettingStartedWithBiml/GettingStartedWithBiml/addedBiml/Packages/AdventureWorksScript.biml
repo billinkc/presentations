@@ -1,0 +1,12 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	<#
+		string _domain = Varigence.Utility.ActiveDirectory.ActiveDirectoryHelper.GetDomain();
+		//Varigence.Utility.Database.DatabaseHelpers.
+		// Varigence.Utility.Tree t 
+//		string conn = ConnectionExtensions.GetSchemaList()
+		string awconn = @"Provider=SQLOLEDB;Data Source=localhost\dev2012;Integrated Security=SSPI;Initial Catalog=AdventureWorks2012";
+		
+		
+	#>
+
+</Biml>

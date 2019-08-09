@@ -1,0 +1,104 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <ScriptProjects>
+        <ScriptTaskProject Name="ScriptTask_8ecc36a4da2649ff88c6ccb172996c12" EntryPoint="ScriptMain" ProjectCoreName="ScriptTask_8ecc36a4da2649ff88c6ccb172996c12">
+            <Files>
+                <File BuildAction="None" Path="dts://Scripts/ScriptTask_8ecc36a4da2649ff88c6ccb172996c12/ScriptTask_8ecc36a4da2649ff88c6ccb172996c12.vsaproj">&lt;VisualStudioProject&gt;
+    &lt;VisualBasic
+        Version = "8.0.50727.1826"
+        MVID = "{00000000-0000-0000-0000-000000000000}"
+        ProjectType = "Local"
+        ProductVersion = "8.0.50727"
+        SchemaVersion = "2.0"
+    &gt;
+        &lt;Build&gt;
+            &lt;Settings
+                DefaultNamespace = "ScriptTask_8ecc36a4da2649ff88c6ccb172996c12"
+                OptionCompare = "0"
+                OptionExplicit = "1"
+                OptionStrict = "1"
+                ProjectName = "ScriptTask_8ecc36a4da2649ff88c6ccb172996c12"
+                ReferencePath = "C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.ScriptTask\9.0.242.0__89845dcd8080cc91\;C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.ManagedDTS\9.0.242.0__89845dcd8080cc91\"
+                TreatWarningsAsErrors = "false"
+                WarningLevel = "1"
+                RootNamespace = "ScriptTask_8ecc36a4da2649ff88c6ccb172996c12"
+            &gt;
+                &lt;Config
+                    Name = "Debug"
+                    DefineConstants = ""
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DebugSymbols = "true"
+                    RemoveIntegerChecks = "false"
+                /&gt;
+            &lt;/Settings&gt;
+            &lt;References&gt;
+                &lt;Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                /&gt;
+                &lt;Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.ScriptTask"
+                    AssemblyName = "Microsoft.SqlServer.ScriptTask"
+                /&gt;
+                &lt;Reference
+                    Name = "Microsoft.SqlServer.ManagedDTS"
+                    AssemblyName = "Microsoft.SqlServer.ManagedDTS"
+                /&gt;
+            &lt;/References&gt;
+            &lt;Imports&gt;
+                &lt;Import Namespace = "Microsoft.VisualBasic" /&gt;
+            &lt;/Imports&gt;
+        &lt;/Build&gt;
+        &lt;Files&gt;
+            &lt;Include&gt;
+                &lt;File
+                    RelPath = "ScriptMain"
+                    BuildAction = "Compile"
+                    ItemType = "2"
+                /&gt;
+                &lt;VSAAppGlobal
+                    VSAAppGlobalName = "Dts"
+                    ItemType = "1"
+                    VSAAppGlobalType = "Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptObjectModel"
+                /&gt;
+            &lt;/Include&gt;
+        &lt;/Files&gt;
+        &lt;Folders&gt;
+            &lt;Include/&gt;
+        &lt;/Folders&gt;
+    &lt;/VisualBasic&gt;
+&lt;/VisualStudioProject&gt;</File>
+                <File BuildAction="None" Path="dts://Scripts/ScriptTask_8ecc36a4da2649ff88c6ccb172996c12/ScriptMain.vsaitem">' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic
+' The ScriptMain class is the entry point of the Script Task.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+
+Public Class ScriptMain
+
+    ' Reset halt run execution id to false as this run now complete.
+
+	Public Sub Main()
+
+        ' Reset halt run execution flag to false
+        Dts.Variables("Framework::Halt_Run_Execution").Value = False
+
+        Dts.TaskResult = Dts.Results.Success
+
+	End Sub
+
+End Class</File>
+            </Files>
+            <ReadWriteVariables>
+                <Variable VariableName="Halt_Run_Execution" DataType="Boolean" Namespace="Framework" />
+            </ReadWriteVariables>
+        </ScriptTaskProject>
+    </ScriptProjects>
+</Biml>

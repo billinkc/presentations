@@ -1,0 +1,43 @@
+<#@ property name="schema" type="String" #>
+<#@ property name="table" type="String" #>
+
+            <Package ConstraintMode="Linear"
+                Name="<#=schema#>_<#=table#>"
+
+            >
+            <Variables>
+                <Variable Name="SchemaName" DataType="String"><#=schema#></Variable>
+                <Variable Name="TableName" DataType="String"><#=table#></Variable>
+                <Variable Name="QualifiedTableSchema"
+                          DataType="String"
+                          EvaluateAsExpression="true">"[" +  @[User::SchemaName] + "].[" +  @[User::TableName] + "]"</Variable>
+            </Variables>
+            <Tasks>
+                    <ExecuteSQL ConnectionName="DST" Name="SQL Truncate target">
+                        <DirectInput>TRUNCATE TABLE <#=schema#>.<#=table#></DirectInput>
+                    </ExecuteSQL>
+                <Dataflow
+                    Name="DFT"
+                >
+                    <Transformations>
+                        <OleDbSource
+                            Name="OLE_SRC <#=schema#>_<#=table#>"
+                            ConnectionName="SRC"
+                        >
+                            <TableFromVariableInput VariableName="User.QualifiedTableSchema"/>
+                        </OleDbSource>
+                        <OleDbDestination
+                            Name="OLE_DST <#=schema#>_<#=table#>"
+                            ConnectionName="DST"
+                            KeepIdentity="true"
+                            TableLock="true"
+                            UseFastLoadIfAvailable="true"
+                            KeepNulls="true"
+                            >
+                            <TableFromVariableOutput VariableName="User.QualifiedTableSchema" />                        
+                        </OleDbDestination>
+                    </Transformations>
+                </Dataflow>
+
+            </Tasks>
+            </Package>

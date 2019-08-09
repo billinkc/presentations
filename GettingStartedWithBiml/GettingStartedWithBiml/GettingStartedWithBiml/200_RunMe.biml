@@ -1,0 +1,26 @@
+<#@ template language="C#" hostspecific="true" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+ <!--
+<#
+    string schemaName = "RAW";
+    string tableName = "Pickup";
+    string ffName = "FF Pickup";
+    string fileMask = "Pickup Report *.txt";
+#>
+-->
+    <#=CallBimlScript("299_Connections.biml")#>
+ 	<PackageProjects>
+		<PackageProject Name="BimlDemo" ProtectionLevel="DontSaveSensitive">
+			<Parameters>
+				<Parameter Name="FolderBase" DataType="String">C:\ssisdata\</Parameter>
+			</Parameters>
+			<Packages>
+				<!-- Change 01 -->
+				<Package IsEntryPoint="true" PackageName="<#=schemaName#>_<#=tableName#>" />
+			</Packages>
+		</PackageProject>
+	</PackageProjects>
+    <Packages>
+        <#=CallBimlScript("200_Pickups.biml", schemaName, tableName, ffName, fileMask)#>
+    </Packages>
+</Biml>

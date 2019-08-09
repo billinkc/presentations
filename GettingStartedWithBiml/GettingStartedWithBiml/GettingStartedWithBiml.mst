@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <IsPackageEditorCompactDisplayModeEnabled>False</IsPackageEditorCompactDisplayModeEnabled>
+    <IsTemplateAutoUpdatePreviewEnabled>False</IsTemplateAutoUpdatePreviewEnabled>
+    <IsTemplateCheckBimlSyntaxEnabled>True</IsTemplateCheckBimlSyntaxEnabled>
+    <IsTemplateAutoFormatXmlEnabled>True</IsTemplateAutoFormatXmlEnabled>
+    <AddedXmlFilesPath>addedBiml</AddedXmlFilesPath>
+    <CompilationOutputPath>output</CompilationOutputPath>
+    <DocumentationOutputPath>documentation</DocumentationOutputPath>
+    <DocumentationTemplatePath />
+    <IsWarnAsErrorEnabled>False</IsWarnAsErrorEnabled>
+    <IsCleanOutputFolderEnabled>False</IsCleanOutputFolderEnabled>
+    <IsCleanDocumentationFolderEnabled>False</IsCleanDocumentationFolderEnabled>
+    <SqlVersion>SqlServer2008R2</SqlVersion>
+    <SsasVersion>Ssas2008R2</SsasVersion>
+    <SsisVersion>Ssis2008R2</SsisVersion>
+    <UseProjectDeploymentModel>False</UseProjectDeploymentModel>
+    <ExtraCommandLineOptions />
+    <EmitDocumentationAnnotations>True</EmitDocumentationAnnotations>
+    <EmitCodeCommentAnnotations>False</EmitCodeCommentAnnotations>
+    <EmitTagAnnotations>False</EmitTagAnnotations>
+    <EmitEmittableAssets>True</EmitEmittableAssets>
+    <EmitIncludeAssets>True</EmitIncludeAssets>
+    <DefaultConnectionName />
+    <LoweringTemplateConfigurationPath />
+    <SelectedConfigurationFilePath />
+    <MistVersion>3.4.9573.0</MistVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <RootFolder Include="..\">
+      <RootFolderId>0</RootFolderId>
+    </RootFolder>
+  </ItemGroup>
+  <ItemGroup>
+    <Live Include="GettingStartedWithBiml\addedBiml\Connections\Child Package Sample.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Connections\CM_Adventureworks.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Connections\CM_TypeMoreClickLess.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Connections\Framework_v1.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Connections\Logs.txt.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Connections\Package.dtsx.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\FileFormats\Child Package Sample.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Packages\AdventureWorksScript.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Packages\Child Package Template.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Packages\CurrencyCodePOC.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Packages\Master Package.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ComponentScriptProject.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_348cfa51a5a848289abce6baae116c4c.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_34d3ee5d0480440f8ca0690c2e44c266.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_8466018690e041209ef61b2f106b38db.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_8ecc36a4da2649ff88c6ccb172996c12.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_93d25f9a138240f389d88b922a442358.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_a366edc72cc945128597cb9a917e9931.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_d0f2b52d83484e1d8476eb1feb9a8601.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\ScriptProjects\ScriptTask_eb7642318df742f5b9cfb79367579169.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Tables\PackageHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Tables\PICKUP.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Tables\SalesCurrency.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Tables\Summit2013.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="GettingStartedWithBiml\addedBiml\Tables\sysdtsconfig.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <None Include="GettingStartedWithBiml.bimlproj">
+      <RootFolderId>0</RootFolderId>
+    </None>
+    <Reference Include="GettingStartedWithBiml\addedBiml\BimlScripts\FindPrimaryKeys.biml">
+      <RootFolderId>0</RootFolderId>
+    </Reference>
+    <Reference Include="GettingStartedWithBiml\addedBiml\BimlScripts\GetTableBiml.biml">
+      <RootFolderId>0</RootFolderId>
+    </Reference>
+  </ItemGroup>
+</Project>

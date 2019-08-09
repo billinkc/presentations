@@ -1,0 +1,5 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <ScriptProjects>
+        <ScriptTaskProject Name="ScriptTask_34d3ee5d0480440f8ca0690c2e44c266" EntryPoint="ScriptMain" ProjectCoreName="ScriptTask_34d3ee5d0480440f8ca0690c2e44c266" />
+    </ScriptProjects>
+</Biml>

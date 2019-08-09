@@ -1,0 +1,12 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <FileFormats>
+        <FlatFileFormat Name="Child Package Sample" Locale="Lcid3081" CodePage="1252" TextQualifer="&lt;none&gt;" ColumnNamesInFirstDataRow="true" RowDelimiter="" IsUnicode="false">
+            <Columns>
+                <Column Name="Key" DataType="Byte" Delimiter="Comma" />
+                <Column Name="Value" DataType="UInt32" Delimiter="Comma" />
+                <Column Name="Date" Length="50" DataType="AnsiString" CodePage="1252" Delimiter="Comma" MaximumWidth="50" />
+                <Column Name="Detail" Length="50" DataType="AnsiString" CodePage="1252" Delimiter="CRLF" MaximumWidth="50" />
+            </Columns>
+        </FlatFileFormat>
+    </FileFormats>
+</Biml>

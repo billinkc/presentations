@@ -1,0 +1,5 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Connections>
+        <FileConnection Name="Logs.txt" FileUsageType="CreateFile" FilePath="C:\Users\BI Monkey\Desktop\Logs.txt" />
+    </Connections>
+</Biml>

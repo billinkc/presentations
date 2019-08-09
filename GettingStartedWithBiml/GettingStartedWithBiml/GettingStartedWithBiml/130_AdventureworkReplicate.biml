@@ -1,0 +1,43 @@
+<#@ template language="C#" tier="2" #>
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <!-- http://bimlscript.com/Snippet/Details/57  -->
+	<# var sourceConnection = (AstDbConnectionNode)RootNode.Connections["CM_Adventureworks"]; #>
+    <# var importedSchema = sourceConnection.ImportDB("", "", ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeColumnDefault | ImportOptions.ExcludeViews); #>
+    <# var tableNamesToImport = ExternalDataAccess.GetDataTable(sourceConnection.ConnectionString, "SELECT T.name AS TableName FROM sys.tables AS T").Rows.OfType<System.Data.DataRow>().Select(r => r[0].ToString()); #>
+
+    <Tables>
+        <# //foreach (var tableNode in importedSchema.TableNodes.Where(item => tableNamesToImport.Contains(item.Name)).OrderBy(item => item.Name)) { #>
+            <!-- Do whatever you were planning to do with your now filtered and sorted list of table nodes -->
+            <# //tableNode.GetBiml() #>
+        <# //} #>
+    </Tables>
+    
+    <Packages>
+        <Package Name="130_CreatedAdventureworksLiteSchema" AutoCreateConfigurationsType="None" ConstraintMode="Linear">
+            <Tasks>
+                <# foreach(var table in RootNode.Tables) {#>
+                <ExecuteSQL Name="Create <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+                    <DirectInput>
+                        <#=table.GetTableSql()#> 
+                    </DirectInput>
+                </ExecuteSQL>
+                <# } #>
+                <# foreach(var table in RootNode.Dimensions) {#>
+                <ExecuteSQL Name="Create <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+                    <DirectInput>
+                        <#=table.GetTableSql()#> 
+                    </DirectInput>
+                </ExecuteSQL>
+                <# } #>
+                <# foreach(var table in RootNode.Facts) {#>
+                <ExecuteSQL Name="Create <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+                    <DirectInput>
+                        <#=table.GetTableSql()#> 
+                    </DirectInput>
+                </ExecuteSQL>
+                <# } #>
+            </Tasks>
+        </Package>
+    </Packages>
+</Biml>

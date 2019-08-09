@@ -1,0 +1,49 @@
+﻿<#@ target type="Package" mergemode="LocalMerge" #>
+<Package>
+    <Variables>
+	<# if (TargetNode.Variables["C_AlertConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_AlertConnectionString"]); } #>
+	<Variable Name="C_AlertConnectionString" DataType="String">Data Source=VCSGDEVSQL01;Initial Catalog=Core;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</Variable>
+	<# if (TargetNode.Variables["C_ApplicationPath"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_ApplicationPath"]); } #>
+        <Variable Name="C_ApplicationPath" DataType="String">D:\Application\</Variable>
+	<# if (TargetNode.Variables["C_EmailSuffix"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_EmailSuffix"]); } #>
+        <Variable Name="C_EmailSuffix" DataType="String">@ebay.com</Variable>
+	<# if (TargetNode.Variables["C_SSISDBServer"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_SSISDBServer"]); } #>
+        <Variable Name="C_SSISDBServer" DataType="String">Data Source=VCSTDEVETL01\SCSTDEVSQL20;Initial Catalog=ssisdb;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</Variable>
+	<# if (TargetNode.Variables["C_Tier1Email"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_Tier1Email"]); } #>
+        <Variable Name="C_Tier1Email" DataType="String">calow@ebay.com</Variable>
+	<# if (TargetNode.Variables["C_Tier2Email"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_Tier2Email"]); } #>
+        <Variable Name="C_Tier2Email" DataType="String">calow@ebay.com</Variable>
+	<# if (TargetNode.Variables["C_Tier3Email"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_Tier3Email"]); } #>
+        <Variable Name="C_Tier3Email" DataType="String">calow@ebay.com</Variable>
+	<# if (TargetNode.Variables["C_ETLOnCall"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_ETLOnCall"]); } #>
+        <Variable Name="C_ETLOnCall" DataType="String">calow@ebay.com</Variable>
+	<# if (TargetNode.Variables["C_DataFolder"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_DataFolder"]); } #>
+        <Variable Name="C_DataFolder" DataType="String">clients</Variable>
+	<# if (TargetNode.Variables["C_ExtractFolder"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_ExtractFolder"]); } #>
+        <Variable Name="C_ExtractFolder" DataType="String">Extract</Variable>
+	<# if (TargetNode.Variables["C_LogConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_LogConnectionString"]); } #>
+        <Variable Name="C_LogConnectionString" DataType="String">Data Source=scstdevsql01;Initial Catalog=Clearsaleingcom;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</Variable>
+	<# if (TargetNode.Variables["C_OLTPConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_OLTPConnectionString"]); } #>
+        <Variable Name="C_OLTPConnectionString" DataType="String">Data Source=scstdevsql01;Initial Catalog=Clearsaleingcom;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</Variable>
+	<# if (TargetNode.Variables["C_RawFolder"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_RawFolder"]); } #>
+        <Variable Name="C_RawFolder" DataType="String">Raw</Variable>
+	<# if (TargetNode.Variables["C_SMTPServer"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_SMTPServer"]); } #>
+        <Variable Name="C_SMTPServer" DataType="String">mail.internal.cs.mgmt</Variable>
+	<# if (TargetNode.Variables["C_TransConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_TransConnectionString"]); } #>
+        <Variable Name="C_TransConnectionString" DataType="String">Data Source=scstdevsql01;Initial Catalog=trans;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</Variable>
+	<# if (TargetNode.Variables["C_WarehouseConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_WarehouseConnectionString"]); } #>
+        <Variable Name="C_WarehouseConnectionString" DataType="String">Data Source=scstdevsql01;Initial Catalog=warehouse;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</Variable>
+	<# if (TargetNode.Variables["C_WarehouseADOConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_WarehouseADOConnectionString"]); } #>
+        <Variable Name="C_WarehouseADOConnectionString" DataType="String">Data Source=scstdevsql01;Initial Catalog=warehouse;Integrated Security=true;    </Variable>
+	<# if (TargetNode.Variables["C_OLTPADOConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_OLTPADOConnectionString"]); } #>
+        <Variable Name="C_OLTPADOConnectionString" DataType="String">Data Source=scstdevsql01;Initial Catalog=clearsaleingcom;Integrated Security=true;    </Variable>
+	<# if (TargetNode.Variables["C_WorkConnectionString"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["C_WorkConnectionString"]); } #>
+        <Variable Name="C_WorkConnectionString" DataType="String">Data Source=scstdevsql01;Initial Catalog=work;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False; </Variable>
+	<# if (TargetNode.Variables["TargetInstanceName"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["TargetInstanceName"]); } #>
+        <Variable Name="TargetInstanceName" DataType="String">scstdevsql01</Variable>
+	<# if (TargetNode.Variables["TargetServerDate"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["TargetServerDate"]); } #>
+        <Variable Name="TargetServerDate" DataType="DateTime">3/18/2014 7:12:21 PM</Variable>
+	<# if (TargetNode.Variables["InstanceAlias"] != null) { TargetNode.Variables.Remove(TargetNode.Variables["InstanceAlias"]); } #>
+        <Variable Name="InstanceAlias" DataType="String">scstdevsql01</Variable>
+    </Variables>  		
+</Package>

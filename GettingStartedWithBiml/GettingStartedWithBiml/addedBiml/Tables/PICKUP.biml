@@ -1,0 +1,61 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="PICKUP" SchemaName="CM_TypeMoreClickLess.RAW">
+    <Columns>
+        <Column Name="SEND_DT" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="SEND_TIME" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="DT" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="TERM" DataType="AnsiString" Length="4" IsNullable="true" />
+        <Column Name="PCT_ZONE" DataType="AnsiString" Length="1" IsNullable="true" />
+        <Column Name="STATUS_CODE" DataType="AnsiString" Length="1" IsNullable="true" />
+        <Column Name="TIME_ARRIVE" DataType="AnsiString" Length="4" IsNullable="true" />
+        <Column Name="TIME_DEPART" DataType="AnsiString" Length="4" IsNullable="true" />
+        <Column Name="REFERENCE_ID" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="MASTER_REF_ID" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="SHPR_NAME" DataType="AnsiString" Length="60" IsNullable="true" />
+        <Column Name="ADDR" DataType="AnsiString" Length="60" IsNullable="true" />
+        <Column Name="CITY" DataType="AnsiString" Length="35" IsNullable="true" />
+        <Column Name="STATE" DataType="AnsiString" Length="2" IsNullable="true" />
+        <Column Name="ZIP" DataType="AnsiString" Length="6" IsNullable="true" />
+        <Column Name="CTRY_RPRTD" DataType="AnsiString" Length="3" IsNullable="true" />
+        <Column Name="PCT_PU_NAME" DataType="AnsiString" Length="20" IsNullable="true" />
+        <Column Name="PCT_PU_PHONE" DataType="AnsiString" Length="18" IsNullable="true" />
+        <Column Name="PCT_CO_NAME" DataType="AnsiString" Length="20" IsNullable="true" />
+        <Column Name="PCT_CO_PHONE" DataType="AnsiString" Length="18" IsNullable="true" />
+        <Column Name="PCT_READY_HH" DataType="AnsiString" Length="2" IsNullable="true" />
+        <Column Name="PCT_READY_MM" DataType="AnsiString" Length="2" IsNullable="true" />
+        <Column Name="PCT_CLOSE_HH" DataType="AnsiString" Length="2" IsNullable="true" />
+        <Column Name="PCT_CLOSE_MM" DataType="AnsiString" Length="2" IsNullable="true" />
+        <Column Name="TRAILER" DataType="AnsiString" Length="10" IsNullable="true" />
+        <Column Name="PCT_NUM_SHPS" DataType="AnsiString" Length="3" IsNullable="true" />
+        <Column Name="WGT" DataType="AnsiString" Length="6" IsNullable="true" />
+        <Column Name="DRIVER_NAME" DataType="AnsiString" Length="15" IsNullable="true" />
+        <Column Name="REASON_CODE" DataType="AnsiString" Length="4" IsNullable="true" />
+        <Column Name="SERVICE_TYPE" DataType="AnsiString" Length="4" IsNullable="true" />
+        <Column Name="QUOTE_ID" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="ECM_ID" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="PCT_CPUP" DataType="AnsiString" Length="1" IsNullable="true" />
+        <Column Name="PCT_T_LINE" DataType="AnsiString" Length="20" IsNullable="true" />
+        <Column Name="PCT_TAKEN_BY" DataType="AnsiString" Length="7" IsNullable="true" />
+        <Column Name="BUS_ID" DataType="AnsiString" Length="11" IsNullable="true" />
+        <Column Name="DEPT_CODE" DataType="AnsiString" Length="3" IsNullable="true" />
+        <Column Name="TAG" DataType="AnsiString" Length="20" IsNullable="true" />
+        <Column Name="PICK_TYPE" DataType="AnsiString" Length="4" IsNullable="true" />
+        <Column Name="PCT_PU_COMM1" DataType="AnsiString" Length="25" IsNullable="true" />
+        <Column Name="PCT_PU_COMM2" DataType="AnsiString" Length="25" IsNullable="true" />
+        <Column Name="PCT_REPORT_DATE" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="PCS" DataType="AnsiString" Length="5" IsNullable="true" />
+        <Column Name="GROUP_ID" DataType="AnsiString" Length="14" IsNullable="true" />
+        <Column Name="RAPID_ROUTE_CD" DataType="AnsiString" Length="10" IsNullable="true" />
+        <Column Name="DTS_ASSIGN" DataType="AnsiString" Length="16" IsNullable="true" />
+        <Column Name="DTS_ACKNOWLEDGE" DataType="AnsiString" Length="16" IsNullable="true" />
+        <Column Name="ARRIVE_LAT" DataType="AnsiString" Length="11" IsNullable="true" />
+        <Column Name="ARRIVE_LON" DataType="AnsiString" Length="11" IsNullable="true" />
+        <Column Name="RPRTD_PU_DT" DataType="AnsiString" Length="8" IsNullable="true" />
+        <Column Name="RPRTD_NBR_SHPTS" DataType="AnsiString" Length="3" IsNullable="true" />
+        <Column Name="RPRTD_PU_WGT" DataType="AnsiString" Length="6" IsNullable="true" />
+        <Column Name="RPRTD_PU_PCS" DataType="AnsiString" Length="5" IsNullable="true" />
+    </Columns>
+</Table>
+    </Tables>
+</Biml>

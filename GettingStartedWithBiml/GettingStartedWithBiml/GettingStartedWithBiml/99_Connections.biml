@@ -1,0 +1,93 @@
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+
+    <Connections>
+        
+        <OleDbConnection
+            Name="CM_OLE"
+            ConnectionString="Data Source=localhost\dev2017;Initial Catalog=tempdb;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
+        />
+        <OleDbConnection
+            Name="Audit"
+            ConnectionString="Data Source=localhost\dev2017;Initial Catalog=TypeMoreClickLess;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
+        />
+        <OleDbConnection
+            Name="TypeMoreClickLess"
+            ConnectionString="Data Source=localhost\dev2017;Initial Catalog=TypeMoreClickLess;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
+        />
+        <OleDbConnection
+            Name="Adventureworks"
+            ConnectionString="Data Source=localhost\dev2017;Initial Catalog=AdventureWorks2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
+            />
+        <FlatFileConnection
+            Name="FF Pickup"
+            FileFormat="FFF Pickup"
+            FilePath="C:\ssisdata\Operations\Input\Pickup Report Pickups.txt"
+            CreateInProject="false"
+		/>
+    </Connections>
+    <FileFormats>
+        <FlatFileFormat
+	Name="FFF Pickup"
+	CodePage="1252"
+	RowDelimiter="CRLF"
+	IsUnicode="false"
+	FlatFileType="RaggedRight"
+			>
+            <Columns>
+                <Column Name="SEND_DT" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="SEND_TIME" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="DT" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="TERM" Length="04"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_ZONE" Length="01"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="STATUS_CODE" Length="01"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="TIME_ARRIVE" Length="04"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="TIME_DEPART" Length="04"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="REFERENCE_ID" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="MASTER_REF_ID" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="SHPR_NAME" Length="60"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="ADDR" Length="60"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="CITY" Length="35"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="STATE" Length="02"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="ZIP" Length="06"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="CTRY_RPRTD" Length="03"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_PU_NAME" Length="20"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_PU_PHONE" Length="18"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_CO_NAME" Length="20"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_CO_PHONE" Length="18"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_READY_HH" Length="02"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_READY_MM" Length="02"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_CLOSE_HH" Length="02"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_CLOSE_MM" Length="02"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="TRAILER" Length="10"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_NUM_SHPS" Length="03"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="WGT" Length="06"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="DRIVER_NAME" Length="15"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="REASON_CODE" Length="04"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="SERVICE_TYPE" Length="04"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="QUOTE_ID" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="ECM_ID" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_CPUP" Length="01"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_T_LINE" Length="20"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_TAKEN_BY" Length="07"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="BUS_ID" Length="11"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="DEPT_CODE" Length="03"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="TAG" Length="20"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PICK_TYPE" Length="04"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_PU_COMM1" Length="25"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_PU_COMM2" Length="25"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCT_REPORT_DATE" Length="08"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="PCS" Length="05"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="GROUP_ID" Length="14"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="RAPID_ROUTE_CD" Length="10"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="DTS_ASSIGN" Length="16"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="DTS_ACKNOWLEDGE" Length="16"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="ARRIVE_LAT" Length="11"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="ARRIVE_LON" Length="11"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="RPRTD_PU_DT" Length="8"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="RPRTD_NBR_SHPTS" Length="3"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="RPRTD_PU_WGT" Length="6"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" />
+                <Column Name="RPRTD_PU_PCS" Length="5"  DataType="AnsiString"  ColumnType="FixedWidth"  CodePage="1252" Delimiter="CRLF" />
+            </Columns>
+        </FlatFileFormat>
+    </FileFormats>
+</Biml>

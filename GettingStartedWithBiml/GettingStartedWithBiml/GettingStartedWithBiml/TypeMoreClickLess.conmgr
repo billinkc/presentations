@@ -1,0 +1,6 @@
+<ConnectionManager p1:ObjectName="TypeMoreClickLess" p1:DTSID="{624B7B0E-2F18-41A8-90BB-D5C66DFB051F}" p1:refId="TypeMoreClickLess" p1:CreationName="OLEDB" xmlns:p1="www.microsoft.com/SqlServer/Dts" xmlns="www.microsoft.com/SqlServer/Dts">
+  <p1:ObjectData>
+    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="Data Source=localhost\dev2012;Initial Catalog=TypeMoreClickLess;Provider=SQLNCLI11.1;Integrated Security=SSPI;">
+    </DTS:ConnectionManager>
+  </p1:ObjectData>
+</ConnectionManager>

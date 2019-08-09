@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ReadMe</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Lightning talks!</p>
+<p><a href="./GettingMoreOutOfSSMS/GettingMoreOutOfSSMS.md">Getting More out of SSMS</a></p>
+<p><a href="./Apply/ReadMe">Apply</a></p>
+<p><a href="./NewIn2019/ReadMe.md">New in 2019</a></p>
+<p><a href="./PowerBiStreaming/ReadMe.md">Streaming Dashboards in Power BI</a></p>
+<p>SQL Saturday 2019 - April 27 (tentative)</p>
+<p>Bill Fellows</p>
+<p><span class="citation" data-cites="billinkc">[@billinkc]</span>(https://www.twitter.com/billinkc)</p>
+<p>816.200.7682</p>
+<p>http://ssis.science</p>
+<p>Apply</p>
+<p>Apply is an under used feature of TSQL.</p>
+<p>It comes in two flavors: OUTER and CROSS Being more productive with SSMS</p>
+<h1 id="start-faster">Start faster</h1>
+<p>Modify your shortcut to include the <code>/nosplash</code> parameter</p>
+<ol type="1">
+<li>Find the shortcut file</li>
+</ol>
+<figure>
+<img src="./images/Start_OpenFileLocation_00.png" alt="Start_OpenFileLocation_00" /><figcaption>Start_OpenFileLocation_00</figcaption>
+</figure>
+<ol start="2" type="1">
+<li><p>Right click and select <code>Properties</code></p>
+<figure>
+<img src="./images/Start_Properties.png" alt="Start_Properties" /><figcaption>Start_Properties</figcaption>
+</figure></li>
+<li><p>Append <code>/nosplash</code> to the end of the Target (there is a space after Ssms.exe" and the /nosplash parameter)</p></li>
+</ol>
+<p>Target: <code>"C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\Ssms.exe" /nosplash</code></p>
+<h1 id="registered-servers">Registered Servers</h1>
+<p>Registered servers is a user defined lists and groups of servers.</p>
+<figure>
+<img src="./images/RegisteredServers_00.png" alt="RegisteredServers_00" /><figcaption>RegisteredServers_00</figcaption>
+</figure>
+<p>Quick, answer these questions (must show your work for credit) for all of your servers</p>
+<p>Am I patched up? <code>SELECT SERVERPROPERTY('ProductVersion') AS WhatIsMyVersion;</code></p>
+<p>What’s going on? <code>EXECUTE dbo.sp_WhoIsActive;</code></p>
+<p>Categorize servers into meaningful groups and color code connections.</p>
+<figure>
+<img src="./images/RegisteredServers_10.png" alt="RegisteredServers_10" /><figcaption>RegisteredServers_10</figcaption>
+</figure>
+<h2 id="exporting-registered-servers">Exporting registered servers</h2>
+<p>Get the new person up to speed in a flash</p>
+<figure>
+<img src="./images/TasksExportRegisteredServers_00.png" alt="TasksExportRegisteredServers_00" /><figcaption>TasksExportRegisteredServers_00</figcaption>
+</figure>
+<h1 id="drag-show">Drag show</h1>
+<p>Did you know everything is draggable?</p>
+<p>Object Explorer</p>
+<p>Drag a table name</p>
+<p>Drag a column name</p>
+<p>Drag the Columns</p>
+<p>Shift-Alt drag or shift-alt-arrow (Block select/edit)</p>
+<h1 id="regular-expressions">Regular Expressions</h1>
+<p>https://docs.microsoft.com/en-us/visualstudio/ide/using-regular-expressions-in-visual-studio?view=vs-2015</p>
+<p>What’s new?</p>
+<h1 id="string-or-binary-data-would-be-truncated">String or Binary Data Would be truncated</h1>
+<p>Traceflag 460 (session or server level required</p>
+<p>BACKPORTED TO SQL SERVER 2017 CU12 AND 2016 SP2 CU TBD</p>
+<p>https://blogs.msdn.microsoft.com/sql_server_team/string-or-binary-data-would-be-truncated-replacing-the-infamous-error-8152/</p>
+<h1 id="inline-scalar-udfs">Inline Scalar UDFs</h1>
+<p>No longer a black box for performance</p>
+<p>Maybe it can be inlined, maybe it can’t.</p>
+<p>https://blogs.msdn.microsoft.com/sqlserverstorageengine/2018/11/07/introducing-scalar-udf-inlining/</p>
+<p>https://www.brentozar.com/archive/2018/11/sql-server-2019-faster-functions/ # Streaming data and Power BI</p>
+<p>We built a PBI streaming dashboard for a client that uses a messaging (Service Broker) platform. Traditional reporting solutions were ineffective as the volume and velocity of data was such that looking at data from 5 minutes ago was an eternity. Additionally, when things go bad, they go bad in a <em>hurry</em>.</p>
+<h1 id="getting-started">Getting started</h1>
+<p>Create a Power BI account if you don’t already have one. It’s free. If you want someone else to see your report, you will need a Power BI Pro license, which is $10 a month.</p>
+<p>You can only create streaming datasets and the dashboards that consume them via the PBI Service, aka powerbi.com</p>
+<h1 id="identify-your-data">Identify your data</h1>
+<p>We created a query that exposed the metrics we needed to be able to support Service Broker. We identified how many messages were waiting to be processed, how long processing is taking, how long is it taking for messages to get to us from the source, etc for the past second and aggregated it. Any larger and the averages would flatten the spikes, any smaller and we’d hit the capacity for the free tier.</p>
+<h1 id="create-your-datasetendpoint">Create your dataset/endpoint</h1>
+<p>Datasets, Create, Streaming dataset, API</p>
+<figure>
+<img src="./images/CreateDatasets.png" alt="CreateDatasets" /><figcaption>CreateDatasets</figcaption>
+</figure>
+<h2 id="describe-the-dataset">Describe the dataset</h2>
+<p>Define the shape of the inbound data. Data types: DateTime, Number, and Text. Period. Full Stop.</p>
+<figure>
+<img src="./images/NewStreamingDataset.png" alt="NewStreamingDataset" /><figcaption>NewStreamingDataset</figcaption>
+</figure>
+<h2 id="acquire-endpoint">Acquire endpoint</h2>
+<p>At this point, you have a Push URL to throw data against. This is a critical screen as it shows the URL as well as how you need to marshal your data for ingestion against the api.</p>
+<figure>
+<img src="./images/StreamingDatasetCreated.png" alt="StreamingDatasetCreated" /><figcaption>StreamingDatasetCreated</figcaption>
+</figure>
+<h1 id="choose-your-own-adventure">Choose your own adventure</h1>
+<h2 id="stream-data">Stream data</h2>
+<p>We build a windows service to ensure our metrics are constantly being transmitted to the service. The meat of process is “just a web call.”</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" title="1"><span class="co">// metrics is a struct and GetData ...gets the data</span></a>
+<a class="sourceLine" id="cb1-2" title="2">metrics = <span class="fu">GetData</span>();</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">// Send POST request to the push URL</span></a>
+<a class="sourceLine" id="cb1-4" title="4">WebRequest request = WebRequest.<span class="fu">Create</span>(<span class="kw">this</span>.<span class="fu">RealTimePushUrl</span>);</a>
+<a class="sourceLine" id="cb1-5" title="5">request.<span class="fu">Method</span> = <span class="st">&quot;POST&quot;</span>;</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co">//Build JSON String for POST</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">// Yes, I&#39;m string building and could malform my json</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="dt">string</span> postData = String.<span class="fu">Format</span>(<span class="st">&quot;[{{</span><span class="sc">\&quot;</span><span class="st">ObservationDate</span><span class="sc">\&quot;</span><span class="st">:</span><span class="sc">\&quot;</span><span class="st">{0}</span><span class="sc">\&quot;</span><span class="st">,</span><span class="sc">\&quot;</span><span class="st">MessageCount</span><span class="sc">\&quot;</span><span class="st">:{1},</span><span class="sc">\&quot;</span><span class="st">TotalTime</span><span class="sc">\&quot;</span><span class="st">:{2},</span><span class="sc">\&quot;</span><span class="st">MaxTotalTime</span><span class="sc">\&quot;</span><span class="st">:{3}&quot;</span>, metrics.<span class="fu">TimeStamp</span>, metrics.<span class="fu">MessageCount</span>, metrics.<span class="fu">TotalTime</span>, metrics.<span class="fu">MaxTotalTime</span>, metrics.<span class="fu">MessageCount</span>);</a>
+<a class="sourceLine" id="cb1-10" title="10"></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co">// Prepare request for sending</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="dt">byte</span>[] byteArray = Encoding.<span class="fu">UTF8</span>.<span class="fu">GetBytes</span>(postData);</a>
+<a class="sourceLine" id="cb1-13" title="13">request.<span class="fu">ContentLength</span> = byteArray.<span class="fu">Length</span>;</a>
+<a class="sourceLine" id="cb1-14" title="14"></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">// Get the request stream.</span></a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="kw">using</span> (Stream dataStream = request.<span class="fu">GetRequestStream</span>())</a>
+<a class="sourceLine" id="cb1-17" title="17">{</a>
+<a class="sourceLine" id="cb1-18" title="18">    <span class="co">// Write the data to the request stream.</span></a>
+<a class="sourceLine" id="cb1-19" title="19">    dataStream.<span class="fu">Write</span>(byteArray, <span class="dv">0</span>, byteArray.<span class="fu">Length</span>);</a>
+<a class="sourceLine" id="cb1-20" title="20">}</a></code></pre></div>
+<h2 id="design-your-dashboard">Design your dashboard</h2>
+<p>You can only build your dashboard within the PowerBI Service. No Desktop experience. No migration story. Visualizations options and configurations are rather limited.</p>
+<h1 id="references">References</h1>
+<p>https://docs.microsoft.com/en-us/power-bi/service-real-time-streaming</p>
+<p>https://docs.microsoft.com/en-us/power-bi/service-features-license-type</p>
+</body>
+</html>
